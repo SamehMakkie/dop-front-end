@@ -40,17 +40,17 @@ export default function Carousel() {
   // This can be static or loaded from a server
   const cards = [
     {
-      image: "https://images2.alphacoders.com/597/597965.jpg",
+      image: "https://www.callofduty.com/content/dam/atvi/callofduty/cod-touchui/blog/hero/mw-wz/VGD-WZ-S2-POIS-TOUT.jpg",
     },
     {
       image:
-        "https://virtualbackgrounds.site/wp-content/uploads/2020/07/fortnite-chapter-2-landscape.jpg",
+        "https://www.gtplanet.net/wp-content/uploads/2021/08/ForzaHorizon5_KeyArt_Horiz_RGB_Final.jpg",
     },
     {
       image: "https://images7.alphacoders.com/115/1151164.jpg",
     },
     {
-      image: "https://images4.alphacoders.com/601/thumb-1920-601048.jpg",
+      image: "https://wallpaperboat.com/wp-content/uploads/2020/11/16/61053/no-mans-sky-23.jpg",
     },
   ];
 
