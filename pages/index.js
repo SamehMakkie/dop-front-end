@@ -7,7 +7,7 @@ export default function Home() {
   function fetchBestSellerGames() {
     return [
       {
-        link: "https://google.com",
+        link: "",
         src: "https://i.pinimg.com/736x/57/b1/f7/57b1f746879ac3d9038b24fe2b00c1f2--advanced-warfare-infinite.jpg",
         name: "Call of Duty Infinite Warfare",
         rating: 4.3,
@@ -36,6 +36,39 @@ export default function Home() {
       },
     ];
   }
+  function fetchHighestRatedGames() {
+    return [
+      {
+        link: "",
+        src: "https://www.mobygames.com/images/covers/l/497174-minecraft-nintendo-switch-front-cover.jpg",
+        name: "Minecraft",
+        rating: 4.3,
+        price: "$49",
+      },
+      {
+        link: "",
+        src: "https://i.pinimg.com/originals/d4/e7/a9/d4e7a9ae827ea781b705cc5e9dc01a8e.jpg",
+        name: "Destiny",
+        rating: 3.3,
+        price: "$49",
+      },
+      {
+        link: "",
+        src: "https://www.mobygames.com/images/covers/l/538006-apex-legends-xbox-one-front-cover.jpg",
+        name: "Apex Legend",
+        rating: 4.8,
+        price: "$49",
+      },
+      {
+        link: "",
+        src: "https://preview.redd.it/utps0v323r751.png?width=3840&format=png&auto=webp&s=a77715f1ef01a5a2bed61350b4d8c9f1008df7aa",
+        name: "Valorant",
+        rating: 3,
+        price: "$49",
+      },
+    ];
+  }
+  
 
   return (
     <div>
@@ -45,6 +78,10 @@ export default function Home() {
         <GamesSection
           sectionTitle={"Best Sellers"}
           fetchFunction={fetchBestSellerGames}
+        />
+        <GamesSection
+          sectionTitle={"Highest Rated"}
+          fetchFunction={fetchHighestRatedGames}
         />
       </VStack>
     </div>
