@@ -37,6 +37,7 @@ const NavBar = () => {
         alignItems={"center"}
         columns={{ base: 2, md: 3 }}
         justifyContent="space-between"
+        borderRadius="0px 0px 20px 20px"
         >
         <GridItem colSpan={[]}>
           {isSearchVisible ? (
