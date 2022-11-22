@@ -12,6 +12,7 @@ import {
 import { BiLeftArrowAlt, BiRightArrowAlt } from "react-icons/bi";
 // And react-slick as our Carousel Lib
 import Slider from "react-slick";
+import Link from "next/link";
 
 // Settings for the slider
 const settings = {
@@ -40,17 +41,23 @@ export default function Carousel() {
   // This can be static or loaded from a server
   const cards = [
     {
-      image: "https://www.callofduty.com/content/dam/atvi/callofduty/cod-touchui/blog/hero/mw-wz/VGD-WZ-S2-POIS-TOUT.jpg",
+      link: "",
+      image:
+        "https://www.callofduty.com/content/dam/atvi/callofduty/cod-touchui/blog/hero/mw-wz/VGD-WZ-S2-POIS-TOUT.jpg",
     },
     {
+      link: "",
       image:
         "https://www.gtplanet.net/wp-content/uploads/2021/08/ForzaHorizon5_KeyArt_Horiz_RGB_Final.jpg",
     },
     {
+      link: "",
       image: "https://images7.alphacoders.com/115/1151164.jpg",
     },
     {
-      image: "https://wallpaperboat.com/wp-content/uploads/2020/11/16/61053/no-mans-sky-23.jpg",
+      link: "",
+      image:
+        "https://wallpaperboat.com/wp-content/uploads/2020/11/16/61053/no-mans-sky-23.jpg",
     },
   ];
 
@@ -99,15 +106,16 @@ export default function Carousel() {
       {/* Slider */}
       <Slider {...settings} ref={(slider) => setSlider(slider)}>
         {cards.map((card, index) => (
-          <Box
-            key={index}
-            height={"1000px"}
-            position="relative"
-            objectFit={"cover"}
-            backgroundPosition="center"
-            backgroundRepeat="no-repeat"
-            backgroundSize="cover"
-            backgroundImage={`url(${card.image})`}></Box>
+          <Link key={index} href={card.link}>
+            <Box
+              height={"1000px"}
+              position="relative"
+              objectFit={"cover"}
+              backgroundPosition="center"
+              backgroundRepeat="no-repeat"
+              backgroundSize="cover"
+              backgroundImage={`url(${card.image})`}></Box>
+          </Link>
         ))}
       </Slider>
     </Box>
