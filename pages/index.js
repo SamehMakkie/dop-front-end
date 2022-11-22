@@ -68,7 +68,38 @@ export default function Home() {
       },
     ];
   }
-  
+  function fetchRecentlyAddedGames() {
+    return [
+      {
+        link: "",
+        src: "https://www.cnet.com/a/img/resize/2b05dadb6d20f076c3c07aeebeaf5028b8b8fe75/hub/2019/11/21/19db7c73-c881-4bd4-bf96-8c2174feff67/box-art-flat.png?auto=webp&width=1200",
+        name: "Half life Alyx V",
+        rating: 3,
+        price: "$49",
+      },
+      {
+        link: "https://google.com",
+        src: "https://www.mobygames.com/images/covers/l/700892-rocket-league-playstation-4-front-cover.png",
+        name: "Rocket League",
+        rating: 4.3,
+        price: "$49",
+      },
+      {
+        link: "",
+        src: "https://www.mobygames.com/images/covers/l/567922-cyberpunk-2077-xbox-one-front-cover.jpg",
+        name: "Cyberpunk 2077",
+        rating: 3.3,
+        price: "$49",
+      },
+      {
+        link: "",
+        src: "https://www.mobygames.com/images/covers/l/678796-microsoft-flight-simulator-windows-apps-front-cover.jpg",
+        name: "Microsoft Flight Simulation",
+        rating: 4.8,
+        price: "$49",
+      },
+    ];
+  }
 
   return (
     <div>
@@ -82,6 +113,10 @@ export default function Home() {
         <GamesSection
           sectionTitle={"Highest Rated"}
           fetchFunction={fetchHighestRatedGames}
+        />
+        <GamesSection
+          sectionTitle={"Recently Added"}
+          fetchFunction={fetchRecentlyAddedGames}
         />
       </VStack>
     </div>
