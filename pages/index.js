@@ -2,6 +2,7 @@ import { VStack } from "@chakra-ui/react";
 import GamesSection from "../views/BestSellers/GameSection";
 import Carousel from "../views/Carousel/Carousel";
 import Categories from "../views/Categories/Categories";
+import Footer from "../views/Footer/Footer";
 import NavBar from "../views/NavBar/NavBar";
 
 export default function Home() {
@@ -124,6 +125,7 @@ export default function Home() {
         <Categories
           sectionTitle={"Categories"}
         />
+        <Footer />
       </VStack>
     </div>
   );
