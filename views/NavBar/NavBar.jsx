@@ -27,12 +27,17 @@ const NavBar = () => {
   return (
     <>
       <SimpleGrid
-        as={"header"}
+        top={0}
         px={[4, 10]}
+        zIndex={10}
+        as={"header"}
         minH={"100px"}
+        bgColor={"white"}
+        position={"sticky"}
+        alignItems={"center"}
         columns={{ base: 2, md: 3 }}
         justifyContent="space-between"
-        alignItems={"center"}>
+        >
         <GridItem colSpan={[]}>
           {isSearchVisible ? (
             <SearchElement />
