@@ -14,7 +14,9 @@ import { setFalse } from "../../redux/features/searchVisibilitySlice";
 import Nav from "./Nav/Nav";
 
 const NavBar = () => {
-  const isSearchVisible = useSelector((state) => state.searchVisibilityReducer.value);
+  const isSearchVisible = useSelector(
+    (state) => state.searchVisibilityReducer.value
+  );
   const [aboveSM] = useMediaQuery("(min-width: 48em)");
   const dispatch = useDispatch();
 
@@ -37,8 +39,7 @@ const NavBar = () => {
         alignItems={"center"}
         columns={{ base: 2, md: 3 }}
         justifyContent="space-between"
-        borderRadius="0px 0px 20px 20px"
-        >
+        borderRadius="0px 0px 20px 20px">
         <GridItem colSpan={[]}>
           {isSearchVisible ? (
             <SearchElement />
