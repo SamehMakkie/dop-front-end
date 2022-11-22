@@ -14,7 +14,7 @@ const GamesSection = ({ sectionTitle, fetchFunction }) => {
 
   return (
     <VStack w="100%" px={12} as={"section"} spacing={5} alignItems="start">
-      <Heading size={["2xl"]}>Best Sellers</Heading>
+      <Heading size={["2xl"]}>{sectionTitle}</Heading>
       <SimpleGrid w="100%" columns={[1, 2, 3, 4]} columnGap={10} rowGap={10}>
         {loading
           ? [...Array(4)].map((e, i) => <LoadingGameCard key={i} />)
