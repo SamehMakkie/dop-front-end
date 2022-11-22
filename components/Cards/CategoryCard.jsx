@@ -1,11 +1,13 @@
 import { Flex, Heading } from "@chakra-ui/react";
 import Link from "next/link";
-import React from "react";
+import { motion } from "framer-motion";
+
+const MotionFlex = motion(Flex)
 
 const CategoryCard = ({ category, link, start, end }) => {
   return (
     <Link href={link}>
-      <Flex
+      <MotionFlex
         px={10}
         w="100%"
         h="200px"
@@ -13,11 +15,15 @@ const CategoryCard = ({ category, link, start, end }) => {
         bgColor={"gray.400"}
         borderRadius={"2xl"}
         justifyContent={"center"}
-        bgGradient={`linear(to-br, ${start}, ${end})`}>
+        bgGradient={`linear(to-br, ${start}, ${end})`}
+        whileHover={{ scale: 1.1}}
+        whileTap={{scale: 0.9}}
+        transition={{duration: 0.2}}
+        >
         <Heading size={"lg"} color={"whiteAlpha.900"}>
           {category}
         </Heading>
-      </Flex>
+      </MotionFlex>
     </Link>
   );
 };

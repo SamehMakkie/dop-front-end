@@ -16,8 +16,9 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
-//
+const MotionCard = motion(Card);
 
 const GameCard = ({ link, src, name, rating, price }) => {
   const getHighlightedRating = () => {
@@ -48,7 +49,12 @@ const GameCard = ({ link, src, name, rating, price }) => {
 
   return (
     <Link href={link}>
-      <Card maxW={"xs"} boxShadow="none">
+      <MotionCard
+        maxW={"xs"}
+        boxShadow="none"
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        transition={{ duration: 0.2 }}>
         <CardBody px={0} borderColor={"transparent"}>
           <VStack spacing={3} alignItems="start">
             <Image
@@ -72,7 +78,7 @@ const GameCard = ({ link, src, name, rating, price }) => {
             </Flex>
           </VStack>
         </CardBody>
-      </Card>
+      </MotionCard>
     </Link>
   );
 };
