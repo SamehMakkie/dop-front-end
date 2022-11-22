@@ -1,6 +1,7 @@
 import { VStack } from "@chakra-ui/react";
 import GamesSection from "../views/BestSellers/GameSection";
 import Carousel from "../views/Carousel/Carousel";
+import Categories from "../views/Categories/Categories";
 import NavBar from "../views/NavBar/NavBar";
 
 export default function Home() {
@@ -36,6 +37,7 @@ export default function Home() {
       },
     ];
   }
+
   function fetchHighestRatedGames() {
     return [
       {
@@ -68,6 +70,7 @@ export default function Home() {
       },
     ];
   }
+
   function fetchRecentlyAddedGames() {
     return [
       {
@@ -117,6 +120,9 @@ export default function Home() {
         <GamesSection
           sectionTitle={"Recently Added"}
           fetchFunction={fetchRecentlyAddedGames}
+        />
+        <Categories
+          sectionTitle={"Categories"}
         />
       </VStack>
     </div>
