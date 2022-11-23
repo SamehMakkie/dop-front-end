@@ -64,7 +64,7 @@ const GameCard = ({ link, src, name, rating, price }) => {
               alt={name + "cover image"}
               borderRadius={"2xl"}
             />
-            <Heading as="h3" size={["lg", "lg", "lg", "xl"]}>
+            <Heading as="h3" size={"lg"}>
               {name}
             </Heading>
             <Flex w="100%" justifyContent={"space-between"}>
