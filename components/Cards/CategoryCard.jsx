@@ -10,7 +10,7 @@ const CategoryCard = ({ category, link, start, end }) => {
       <MotionFlex
         px={10}
         w="100%"
-        h="200px"
+        h="250px"
         alignItems="center"
         bgColor={"gray.400"}
         borderRadius={"2xl"}
