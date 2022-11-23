@@ -64,7 +64,7 @@ export default function Carousel() {
   return (
     <Box
       position={"relative"}
-      height={"1000px"}
+      // height={"1000px"}
       width={"full"}
       overflow={"hidden"}>
       {/* CSS files for react-slick */}
@@ -108,7 +108,7 @@ export default function Carousel() {
         {cards.map((card, index) => (
           <Link key={index} href={card.link}>
             <Box
-              height={"1000px"}
+              height={["65vw", "60vw", "50vw"]}
               position="relative"
               objectFit={"cover"}
               backgroundPosition="center"
