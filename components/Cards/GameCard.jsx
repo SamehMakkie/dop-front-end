@@ -50,7 +50,8 @@ const GameCard = ({ link, src, name, rating, price }) => {
   return (
     <Link href={link}>
       <MotionCard
-        maxW={"xs"}
+        mx={"auto"}
+        maxW={["20rem", "15rem"]}
         boxShadow="none"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
@@ -59,7 +60,7 @@ const GameCard = ({ link, src, name, rating, price }) => {
           <VStack spacing={3} alignItems="start">
             <Image
               w="100%"
-              h={"442px"}
+              h={["450px", "350px"]}
               src={src}
               alt={name + "cover image"}
               borderRadius={"2xl"}
@@ -68,11 +69,11 @@ const GameCard = ({ link, src, name, rating, price }) => {
               {name}
             </Heading>
             <Flex w="100%" justifyContent={"space-between"}>
-              <HStack spacing={3}>
-                <HStack spacing={2}>{getHighlightedRating()}</HStack>
+              <HStack spacing={[3, 2]}>
+                <HStack spacing={[1, 0]}>{getHighlightedRating()}</HStack>
                 <Text>{rating}</Text>
               </HStack>
-              <Heading as={"h4"} size={"lg"} color="secondary">
+              <Heading as={"h4"} size={"md"} color="secondary">
                 {price}
               </Heading>
             </Flex>

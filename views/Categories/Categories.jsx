@@ -43,7 +43,7 @@ const categories = [
 
 const Categories = ({ sectionTitle, fetchFunction }) => {
   return (
-    <VStack w="100%" px={12} as={"section"} spacing={5} alignItems="start">
+    <VStack w="100%" as={"section"} spacing={5} alignItems="start">
       <Heading size={["2xl"]}>{sectionTitle}</Heading>
       <SimpleGrid w="100%" py={5} columns={[1, 2, 3]} columnGap={10} rowGap={10}>
         {categories.map((category, i) => (

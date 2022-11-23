@@ -108,8 +108,8 @@ export default function Home() {
   return (
     <div>
       <NavBar />
-      <VStack w="100%" spacing={20}>
-        <Carousel />
+      <Carousel />
+      <VStack w="100%" px={[20, 20, 20, 36]} pt={20} spacing={20} justifyContent="center">
         <GamesSection
           sectionTitle={"Best Sellers"}
           fetchFunction={fetchBestSellerGames}
@@ -122,9 +122,7 @@ export default function Home() {
           sectionTitle={"Recently Added"}
           fetchFunction={fetchRecentlyAddedGames}
         />
-        <Categories
-          sectionTitle={"Categories"}
-        />
+        <Categories sectionTitle={"Categories"} />
         <Footer />
       </VStack>
     </div>
