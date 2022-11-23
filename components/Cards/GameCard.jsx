@@ -50,7 +50,7 @@ const GameCard = ({ link, src, name, rating, price }) => {
   return (
     <Link href={link}>
       <MotionCard
-        mx={"auto"}
+        mx={["auto", 0]}
         maxW={["20rem", "15rem"]}
         boxShadow="none"
         whileHover={{ scale: 1.1 }}
