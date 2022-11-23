@@ -88,6 +88,7 @@ export default function Carousel() {
         top={top}
         transform={"translate(0%, -50%)"}
         zIndex={2}
+        bgColor={"white"}
         onClick={() => slider?.slickPrev()}>
         <BiLeftArrowAlt size="40px" />
       </IconButton>
@@ -99,6 +100,7 @@ export default function Carousel() {
         right={side}
         top={top}
         transform={"translate(0%, -50%)"}
+        bgColor={"white"}
         zIndex={2}
         onClick={() => slider?.slickNext()}>
         <BiRightArrowAlt size="40px" />
