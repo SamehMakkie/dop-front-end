@@ -8,7 +8,7 @@ import {
 
 const LoadingGameCard = () => {
   return (
-    <Card maxW={"xs"} boxShadow="none">
+    <Card w={"xs"} mr={5} boxShadow="none" display="inline-block">
       <CardBody px={0} borderColor={"transparent"}>
         <VStack spacing={3} alignItems="start">
           <Skeleton w="100%" h="442px" borderRadius={"2xl"} />
