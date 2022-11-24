@@ -4,19 +4,20 @@ section ul {
   list-style: none;
   overflow-x: scroll;
   overflow-y: hidden;
-  padding: 0px 15px;
-  flex: 0 100px 600px;
+  padding: 15px 15px;
+  flex: 0 0 0;
   margin: 0 auto;
 }
 
 #progress .indicator {
   stroke: #fafafa;
+  margin-top: 100px;
 }
 
 ::-webkit-scrollbar {
   height: 5px;
   width: 5px;
-  background: #CBD5E0;
+  background: #cbd5e0;
   -webkit-border-radius: 1ex;
   border-radius: 1ex;
 }
