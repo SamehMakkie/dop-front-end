@@ -64,7 +64,6 @@ export default function Carousel() {
   return (
     <Box
       position={"relative"}
-      // height={"1000px"}
       width={"full"}
       overflow={"hidden"}>
       {/* CSS files for react-slick */}
@@ -105,7 +104,6 @@ export default function Carousel() {
         onClick={() => slider?.slickNext()}>
         <BiRightArrowAlt size="40px" />
       </IconButton>
-      {/* Slider */}
       <Slider {...settings} ref={(slider) => setSlider(slider)}>
         {cards.map((card, index) => (
           <Link key={index} href={card.link}>

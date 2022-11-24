@@ -1,0 +1,42 @@
+section ul {
+  width: 100%;
+  display: flex;
+  list-style: none;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  padding: 0px 15px;
+  flex: 0 100px 600px;
+  margin: 0 auto;
+}
+
+#progress .indicator {
+  stroke: #fafafa;
+}
+
+::-webkit-scrollbar {
+  height: 5px;
+  width: 5px;
+  background: #CBD5E0;
+  -webkit-border-radius: 1ex;
+  border-radius: 1ex;
+}
+
+section li {
+  height: 100%;
+  flex: 0 0 300px;
+  margin: 0 20px 0 0;
+}
+
+section li:last-of-type {
+  margin: 0;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2c3d55;
+  -webkit-border-radius: 1ex;
+  border-radius: 1ex;
+}
+
+::-webkit-scrollbar-corner {
+  background: #fff3;
+}
