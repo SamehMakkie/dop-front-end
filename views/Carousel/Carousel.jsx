@@ -1,5 +1,4 @@
 import { Box, IconButton, useBreakpointValue } from "@chakra-ui/react";
-import { BiLeftArrowAlt, BiRightArrowAlt } from "react-icons/bi";
 import Slider from "react-slick";
 import Link from "next/link";
 import { useState } from "react";
@@ -82,7 +81,6 @@ export default function Carousel() {
         aria-label="right-arrow"
         transform={"translate(0%, -50%)"}
         onClick={() => slider?.slickNext()} />
-        {/* <ChevronRightIcon size="48px" /> */}
       {/* Slider */}
       <Slider {...settings} ref={(slider) => setSlider(slider)}>
         {cards.map((card, index) => (

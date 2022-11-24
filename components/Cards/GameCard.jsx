@@ -14,6 +14,7 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
+import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
@@ -47,40 +48,41 @@ const GameCard = ({ link, src, name, rating, price }) => {
   };
 
   return (
-    <li>
-      <Link href={link}>
-        <MotionCard
-          maxW={["20rem", "15rem"]}
-          boxShadow="none"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          transition={{ duration: 0.2 }}>
-          <CardBody px={0} borderColor={"transparent"}>
-            <VStack spacing={3} alignItems="start">
-              <Image
-                w="100%"
-                h={["450px", "350px"]}
-                src={src}
-                alt={name + "cover image"}
-                borderRadius={"2xl"}
-              />
-              <Heading as="h3" size={"lg"} fontWeight="normal">
-                {name}
+    <Link href={link}>
+      <MotionCard
+        mr={5}
+        boxShadow="none"
+        whiteSpace={"normal"}
+        display="inline-block"
+        maxW={["20rem", "15rem"]}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        transition={{ duration: 0.2 }}>
+        <CardBody px={0} borderColor={"transparent"} >
+          <VStack spacing={3} alignItems="start">
+            <Image
+              w="100%"
+              h={["450px", "350px"]}
+              src={src}
+              alt={name + "cover image"}
+              borderRadius={"2xl"}
+            />
+            <Heading as="h3" size={"lg"} fontWeight="normal">
+              {name}
+            </Heading>
+            <Flex w="100%" justifyContent={"space-between"}>
+              <HStack spacing={[3, 2]}>
+                <HStack spacing={[1, 0]}>{getHighlightedRating()}</HStack>
+                <Text>{rating}</Text>
+              </HStack>
+              <Heading as={"h4"} size={"md"} color="secondary">
+                {price}
               </Heading>
-              <Flex w="100%" justifyContent={"space-between"}>
-                <HStack spacing={[3, 2]}>
-                  <HStack spacing={[1, 0]}>{getHighlightedRating()}</HStack>
-                  <Text>{rating}</Text>
-                </HStack>
-                <Heading as={"h4"} size={"md"} color="secondary">
-                  {price}
-                </Heading>
-              </Flex>
-            </VStack>
-          </CardBody>
-        </MotionCard>
-      </Link>
-    </li>
+            </Flex>
+          </VStack>
+        </CardBody>
+      </MotionCard>
+    </Link>
   );
 };
 
