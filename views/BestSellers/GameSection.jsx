@@ -4,28 +4,27 @@ import {
   Flex,
   Heading,
   Hide,
-  HStack,
   IconButton,
   VStack,
 } from "@chakra-ui/react";
-import { motion, useScroll } from "framer-motion";
+import { useScroll } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import GameCard from "../../components/Cards/GameCard";
 import LoadingGameCard from "../../components/Cards/LoadingGameCard";
 
-const GamesSection = ({ sectionTitle, fetchFunction }) => {
+const GamesSection = ({ i, sectionTitle, fetchFunction }) => {
   const [games, setGames] = useState();
   const [loading, setLoading] = useState(true);
   const ref = useRef(null);
   useScroll({ container: ref });
 
   const slideLeft = () => {
-    var slider = document.getElementById("slider");
+    var slider = document.getElementById("slider-" + i);
     slider.scrollLeft = slider.scrollLeft - 500;
   };
 
   const slideRight = () => {
-    var slider = document.getElementById("slider");
+    var slider = document.getElementById("slider-" + i);
     slider.scrollLeft = slider.scrollLeft + 500;
   };
 
@@ -55,7 +54,7 @@ const GamesSection = ({ sectionTitle, fetchFunction }) => {
           <IconButton as={ChevronLeftIcon} onClick={slideLeft} mr={2} cursor={"pointer"} />
         </Hide>
         <Box
-          id="slider"
+          id={`slider-${i}`}
           w="100%"
           h="100%"
           overflowX={"scroll"}
