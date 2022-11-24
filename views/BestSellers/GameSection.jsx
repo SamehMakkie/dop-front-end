@@ -1,65 +1,14 @@
-import {
-  Box,
-  Flex,
-  Heading,
-  HStack,
-  IconButton,
-  UnorderedList,
-  useBreakpointValue,
-  useMediaQuery,
-  VStack,
-} from "@chakra-ui/react";
-import { useScroll } from "framer-motion";
+import { Heading, VStack } from "@chakra-ui/react";
+import { motion, useScroll } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import { BiLeftArrowAlt, BiRightArrowAlt } from "react-icons/bi";
-import Slider from "react-slick";
 import GameCard from "../../components/Cards/GameCard";
 import LoadingGameCard from "../../components/Cards/LoadingGameCard";
 
-const settings = {
-  dots: true,
-  arrows: false,
-  infinite: true,
-  speed: 500,
-  slidesToShow: 4,
-  slidesToScroll: 4,
-  initialSlide: 1,
-  responsive: [
-    {
-      breakpoint: 992,
-      settings: {
-        slidesToShow: 3,
-        slidesToScroll: 3,
-        infinite: true,
-        dots: true,
-      },
-    },
-    {
-      breakpoint: 786,
-      settings: {
-        slidesToShow: 2,
-        slidesToScroll: 2,
-        infinite: true,
-        // initialSlide: 2,
-      },
-    },
-    {
-      breakpoint: 480,
-      settings: {
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        infinite: true,
-      },
-    },
-  ],
-};
-
 const GamesSection = ({ sectionTitle, fetchFunction }) => {
-  const ref = useRef(null);
-  useScroll({ container: ref });
-
   const [games, setGames] = useState();
   const [loading, setLoading] = useState(true);
+  const ref = useRef(null);
+  useScroll({ container: ref });
 
   useEffect(() => {
     setGames(fetchFunction());
@@ -74,10 +23,7 @@ const GamesSection = ({ sectionTitle, fetchFunction }) => {
         textAlign={["center", "center", "start"]}>
         {sectionTitle}
       </Heading>
-
-      <ul
-        ref={ref}
-        >
+      <motion.ul ref={ref}>
         {loading
           ? [...Array(4)].map((e, i) => <LoadingGameCard key={i} />)
           : games.map((game, i) => (
@@ -90,7 +36,7 @@ const GamesSection = ({ sectionTitle, fetchFunction }) => {
                 link={game.link}
               />
             ))}
-      </ul>
+      </motion.ul>
     </VStack>
   );
 };

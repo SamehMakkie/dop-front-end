@@ -5,7 +5,7 @@ import {
   InputRightElement,
 } from "@chakra-ui/react";
 import { Search2Icon, CloseIcon } from "@chakra-ui/icons";
-import React, { useRef, useState } from "react";
+import { useState } from "react";
 
 const SearchElement = () => {
   const [searchString, setSearchString] = useState("");

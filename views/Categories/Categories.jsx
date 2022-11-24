@@ -1,5 +1,4 @@
 import { Heading, SimpleGrid, VStack } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
 import CategoryCard from "../../components/Cards/CategoryCard";
 
 const categories = [

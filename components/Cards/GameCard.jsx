@@ -14,7 +14,6 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
-import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
@@ -51,8 +50,6 @@ const GameCard = ({ link, src, name, rating, price }) => {
     <li>
       <Link href={link}>
         <MotionCard
-          // mx={["auto"]}
-
           maxW={["20rem", "15rem"]}
           boxShadow="none"
           whileHover={{ scale: 1.1 }}

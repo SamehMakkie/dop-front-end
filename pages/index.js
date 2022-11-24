@@ -137,7 +137,12 @@ export default function Home() {
     <div>
       <NavBar />
       <Carousel />
-      <VStack w="100%" px={[10, 20, 20, 36]} pt={20} spacing={20} justifyContent="center">
+      <VStack
+        w="100%"
+        px={[10, 20, 20, 36]}
+        pt={20}
+        spacing={20}
+        justifyContent="center">
         <GamesSection
           sectionTitle={"Best Sellers"}
           fetchFunction={fetchBestSellerGames}

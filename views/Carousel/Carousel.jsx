@@ -1,20 +1,9 @@
-import React from "react";
-import {
-  Box,
-  IconButton,
-  useBreakpointValue,
-  Stack,
-  Heading,
-  Text,
-  Container,
-} from "@chakra-ui/react";
-// Here we have used react-icons package for the icons
+import { Box, IconButton, useBreakpointValue } from "@chakra-ui/react";
 import { BiLeftArrowAlt, BiRightArrowAlt } from "react-icons/bi";
-// And react-slick as our Carousel Lib
 import Slider from "react-slick";
 import Link from "next/link";
-
-// Settings for the slider
+import { useState } from "react";
+import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 const settings = {
   dots: true,
   arrows: false,
@@ -28,17 +17,11 @@ const settings = {
 };
 
 export default function Carousel() {
-  // As we have used custom buttons, we need a reference variable to
-  // change the state
-  const [slider, setSlider] = React.useState(null);
+  const [slider, setSlider] = useState(null);
 
-  // These are the breakpoints which changes the position of the
-  // buttons as the screen size changes
   const top = useBreakpointValue({ base: "90%", md: "50%" });
   const side = useBreakpointValue({ base: "30%", md: "40px" });
 
-  // This list contains all the data for carousels
-  // This can be static or loaded from a server
   const cards = [
     {
       link: "",
@@ -62,10 +45,7 @@ export default function Carousel() {
   ];
 
   return (
-    <Box
-      position={"relative"}
-      width={"full"}
-      overflow={"hidden"}>
+    <Box position={"relative"} width={"full"} overflow={"hidden"}>
       {/* CSS files for react-slick */}
       <link
         rel="stylesheet"
@@ -80,30 +60,30 @@ export default function Carousel() {
       />
       {/* Left Icon */}
       <IconButton
-        aria-label="left-arrow"
-        variant="ghost"
-        position="absolute"
-        left={side}
         top={top}
-        transform={"translate(0%, -50%)"}
         zIndex={2}
+        left={side}
+        variant="ghost"
         bgColor={"white"}
-        onClick={() => slider?.slickPrev()}>
-        <BiLeftArrowAlt size="40px" />
-      </IconButton>
+        position="absolute"
+        as={ChevronLeftIcon}
+        aria-label="left-arrow"
+        transform={"translate(0%, -50%)"}
+        onClick={() => slider?.slickPrev()} />
       {/* Right Icon */}
       <IconButton
-        aria-label="right-arrow"
-        variant="ghost"
-        position="absolute"
-        right={side}
         top={top}
-        transform={"translate(0%, -50%)"}
-        bgColor={"white"}
         zIndex={2}
-        onClick={() => slider?.slickNext()}>
-        <BiRightArrowAlt size="40px" />
-      </IconButton>
+        right={side}
+        variant="ghost"
+        bgColor={"white"}
+        position="absolute"
+        as={ChevronRightIcon}
+        aria-label="right-arrow"
+        transform={"translate(0%, -50%)"}
+        onClick={() => slider?.slickNext()} />
+        {/* <ChevronRightIcon size="48px" /> */}
+      {/* Slider */}
       <Slider {...settings} ref={(slider) => setSlider(slider)}>
         {cards.map((card, index) => (
           <Link key={index} href={card.link}>
