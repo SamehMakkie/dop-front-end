@@ -50,7 +50,7 @@ const GameCard = ({ link, src, name, rating, price }) => {
   return (
     <Link href={link}>
       <MotionCard
-        mr={5}
+        mr={[3, 5]}
         boxShadow="none"
         whiteSpace={"normal"}
         display="inline-block"
