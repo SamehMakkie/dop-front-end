@@ -8,18 +8,16 @@
   width: 5px;
   background: #cbd5e0;
   -webkit-border-radius: 1ex;
-  -webkit-overflow-scrolling: auto;
+  -webkit-appearance: none;
   border-radius: 1ex;
 }
 
 ::-webkit-scrollbar-thumb {
   background: #2c3d55;
   -webkit-border-radius: 1ex;
-  -webkit-overflow-scrolling: auto;
   border-radius: 1ex;
 }
 
 ::-webkit-scrollbar-corner {
   background: #fff3;
-  -webkit-overflow-scrolling: auto;
 }
