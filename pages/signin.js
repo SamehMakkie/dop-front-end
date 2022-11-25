@@ -11,6 +11,7 @@ import {
   InputGroup,
   InputRightElement,
   Link as A,
+  Text,
   VStack,
 } from "@chakra-ui/react";
 import Link from "next/link";
@@ -65,6 +66,7 @@ const Signin = () => {
             </Link>
         </Flex>
         <Button w="100%" colorScheme={"teal"}>Signin</Button>
+        <Text>Not a user? <Link href="signup"><A color="blue.400">Sign up</A></Link> </Text>
       </VStack>
     </Flex>
   );
