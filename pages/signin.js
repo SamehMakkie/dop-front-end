@@ -39,7 +39,7 @@ const Signin = () => {
           <FormHelperText>We will never share your email</FormHelperText>
         </FormControl>
         <FormControl w="100%">
-          <FormLabel>Email</FormLabel>
+          <FormLabel>Password</FormLabel>
           <InputGroup w="100%">
             <Input
               w="100%"
@@ -65,7 +65,7 @@ const Signin = () => {
                 <A color="blue.400">Forgot your password?</A>
             </Link>
         </Flex>
-        <Button w="100%" colorScheme={"teal"}>Signin</Button>
+        <Button w="100%" colorScheme={"teal"}>Sign In</Button>
         <Text>Not a user? <Link href="signup"><A color="blue.400">Sign up</A></Link> </Text>
       </VStack>
     </Flex>

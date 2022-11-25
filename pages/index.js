@@ -1,5 +1,5 @@
 import { VStack } from "@chakra-ui/react";
-import GamesSection from "../views/BestSellers/GameSection";
+import GamesSection from "../views/GameSection/GameSection";
 import Carousel from "../views/Carousel/Carousel";
 import Categories from "../views/Categories/Categories";
 import Footer from "../views/Footer/Footer";
