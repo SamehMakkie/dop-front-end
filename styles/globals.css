@@ -9,6 +9,7 @@
   background: #cbd5e0;
   -webkit-border-radius: 1ex;
   -webkit-appearance: none;
+  appearance: none;
   border-radius: 1ex;
 }
 
