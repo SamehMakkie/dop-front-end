@@ -1,12 +1,5 @@
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
-import {
-  Box,
-  Flex,
-  Heading,
-  Hide,
-  IconButton,
-  VStack,
-} from "@chakra-ui/react";
+import { Box, Flex, Heading, Hide, IconButton, VStack } from "@chakra-ui/react";
 import { useScroll } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import GameCard from "../../components/Cards/GameCard";
@@ -37,7 +30,7 @@ const GamesSection = ({ i, sectionTitle, fetchFunction }) => {
     <VStack w="100%" px={0} as={"section"} spacing={5} alignItems="start">
       <Heading
         w="100%"
-        pl={{base: 0, md: 2, lg: 14}}
+        pl={{ base: 0, md: 2, lg: 14 }}
         size={["2xl"]}
         textAlign={["center", "center", "start"]}>
         {sectionTitle}
@@ -50,9 +43,12 @@ const GamesSection = ({ i, sectionTitle, fetchFunction }) => {
         alignItems="center"
         whiteSpace={"nowrap"}
         scrollBehavior={"smooth"}>
-        <Hide below="lg">
-          <IconButton as={ChevronLeftIcon} onClick={slideLeft} mr={2} cursor={"pointer"} />
-        </Hide>
+        <IconButton
+          as={ChevronLeftIcon}
+          onClick={slideLeft}
+          mr={2}
+          cursor={"pointer"}
+        />
         <Box
           id={`slider-${i}`}
           w="100%"
@@ -76,9 +72,12 @@ const GamesSection = ({ i, sectionTitle, fetchFunction }) => {
                 />
               ))}
         </Box>
-        <Hide below="lg">
-          <IconButton as={ChevronRightIcon} onClick={slideRight} ml={2} cursor={"pointer"} />
-        </Hide>
+        <IconButton
+          as={ChevronRightIcon}
+          onClick={slideRight}
+          ml={2}
+          cursor={"pointer"}
+        />
       </Flex>
     </VStack>
   );

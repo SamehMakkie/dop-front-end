@@ -210,7 +210,7 @@ export default function Home() {
       <Carousel />
       <VStack
         w="100%"
-        px={[10, 20, 20, 32, 36]}
+        px={[5, 10, 10, 32, 36]}
         pt={20}
         spacing={20}
         justifyContent="center">
