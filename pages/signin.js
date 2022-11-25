@@ -61,12 +61,12 @@ const Signin = () => {
           </FormHelperText>
         </FormControl>
         <Flex w="100%" justifyContent={"end"}>
-            <Link href={"forgotpassword"}>
+            <Link href={"/forgotpassword"}>
                 <A color="blue.400">Forgot your password?</A>
             </Link>
         </Flex>
         <Button w="100%" colorScheme={"teal"}>Sign In</Button>
-        <Text>Not a user? <Link href="signup"><A color="blue.400">Sign up</A></Link> </Text>
+        <Text>Not a user? <Link href="/signup"><A color="blue.400">Sign up</A></Link> </Text>
       </VStack>
     </Flex>
   );

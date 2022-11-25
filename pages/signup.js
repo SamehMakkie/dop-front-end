@@ -134,7 +134,7 @@ const Signup = () => {
         </Button>
         <Text>
           Already have an account?{" "}
-          <Link href="signin">
+          <Link href="/signin">
             <A color="blue.400">Sign in</A>
           </Link>{" "}
         </Text>
