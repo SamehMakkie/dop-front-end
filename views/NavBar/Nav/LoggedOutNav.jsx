@@ -4,13 +4,13 @@ import Link from "next/link";
 const LoggedOutNav = () => {
   return (
     <>
-      <Link href={"/login"}>
+      <Link href={"/signin"}>
         <Button borderRadius={"2xl"} variant="ghost">
-          Log in
+          Sign In
         </Button>
       </Link>
-      <Link href={"/Sign up"}>
-        <Button borderRadius={"2xl"} colorScheme="teal" >Sign up</Button>
+      <Link href={"/signup"}>
+        <Button borderRadius={"2xl"} colorScheme="teal" >Sign Up</Button>
       </Link>
     </>
   );
