@@ -6,9 +6,11 @@ import {
 } from "@chakra-ui/react";
 import { Search2Icon, CloseIcon } from "@chakra-ui/icons";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 const SearchElement = () => {
   const [searchString, setSearchString] = useState("");
+  const router = useRouter();
 
   const handleChange = (e) => {
     setSearchString(e.target.value);
@@ -19,7 +21,20 @@ const SearchElement = () => {
   };
 
   const handleSearch = () => {
-    console.log(searchString);
+    // Replace multiple spaces with a single one
+    let searchTerm = searchString.replace(/\s\s+/g, " ");
+    searchTerm = searchString.replace(/[^a-zA-Z ]/g, "");
+    console.log(searchTerm);
+
+    if (searchTerm == "" || searchTerm == " ") {
+      router.push("/search/term=-");
+    } else {
+      searchTerm = searchTerm.trim();
+      // Replace a space with a '-' character and convert the string to lower case
+      searchTerm = searchTerm.replace(/\s+/g, "-").toLowerCase();
+      console.log(searchTerm);
+      router.push(`/search/term=${searchTerm}`);
+    }
   };
 
   return (
@@ -38,7 +53,7 @@ const SearchElement = () => {
         value={searchString}
         placeholder="Search..."
       />
-      { searchString && (
+      {searchString && (
         <InputRightElement
           h="100%"
           pr={4}
