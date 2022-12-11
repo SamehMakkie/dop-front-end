@@ -27,13 +27,13 @@ const SearchElement = () => {
     console.log(searchTerm);
 
     if (searchTerm == "" || searchTerm == " ") {
-      router.push({pathname: "/search/", query: {slang: ""}});
+      router.push({pathname: "/search/", query: {slang: "", page: 1}});
     } else {
       searchTerm = searchTerm.trim();
       // Replace a space with a '-' character and convert the string to lower case
       searchTerm = searchTerm.replace(/\s+/g, "-").toLowerCase();
       console.log(searchTerm);
-      router.push({pathname: "/search/", query: {slang: searchTerm}});
+      router.push({pathname: "/search/", query: {slang: searchTerm, page: 1}});
     }
   };
 
