@@ -1,13 +1,4 @@
-import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
-import {
-  Button,
-  Heading,
-  HStack,
-  IconButton,
-  SimpleGrid,
-  VStack,
-} from "@chakra-ui/react";
-import { useRouter } from "next/router";
+import { Heading, SimpleGrid, VStack } from "@chakra-ui/react";
 import BreadCrumb from "../../components/BreadCrumb/BreadCrumb";
 import GameCard from "../../components/Cards/GameCard";
 
@@ -85,8 +76,8 @@ const SearchResults = () => {
       <BreadCrumb />
       <Heading as="h1">Results</Heading>
       <SimpleGrid w="100%" columns={[1, 2, 2, 3]}>
-        {fetchDumbData().map((game) => (
-          <GameCard key={game} {...game} />
+        {fetchDumbData().map((game, i) => (
+          <GameCard key={i} {...game} />
         ))}
       </SimpleGrid>
     </VStack>
