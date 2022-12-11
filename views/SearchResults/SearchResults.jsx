@@ -1,6 +1,25 @@
-import { Heading, SimpleGrid, VStack } from "@chakra-ui/react";
+import {
+  Button,
+  Drawer,
+  DrawerBody,
+  DrawerCloseButton,
+  DrawerContent,
+  DrawerHeader,
+  DrawerOverlay,
+  Flex,
+  Heading,
+  IconButton,
+  SimpleGrid,
+  useDisclosure,
+  VStack,
+} from "@chakra-ui/react";
+import { useRouter } from "next/router";
+import { useRef } from "react";
+import { MdTune } from "react-icons/md";
 import BreadCrumb from "../../components/BreadCrumb/BreadCrumb";
 import GameCard from "../../components/Cards/GameCard";
+import DrawerFilter from "../Filter/DrawerFilter";
+import Filter from "../Filter/Filter";
 
 function fetchDumbData() {
   return [
@@ -71,9 +90,38 @@ function fetchDumbData() {
 }
 
 const SearchResults = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const drawerBtnRef = useRef();
+  const router = useRouter();
+  const query = router.query;
+
   return (
     <VStack w="100%" px={5} spacing={3} alignItems="start">
-      <BreadCrumb />
+      <Flex w="100%" justifyContent={"space-between"} alignItems="center">
+        <BreadCrumb />
+        <IconButton
+          ref={drawerBtnRef}
+          size={"lg"}
+          bgColor="transparent"
+          icon={<MdTune />}
+          onClick={onOpen}
+        />
+        <Drawer
+          isOpen={isOpen}
+          placement="left"
+          onClose={onClose}
+          finalFocusRef={drawerBtnRef}>
+          <DrawerOverlay />
+          <DrawerContent>
+            <DrawerCloseButton />
+            <DrawerHeader>Filter</DrawerHeader>
+
+            <DrawerBody>
+              <DrawerFilter query={query} />
+            </DrawerBody>
+          </DrawerContent>
+        </Drawer>
+      </Flex>
       <Heading as="h1">Results</Heading>
       <SimpleGrid w="100%" columns={[1, 2, 2, 3]}>
         {fetchDumbData().map((game, i) => (
