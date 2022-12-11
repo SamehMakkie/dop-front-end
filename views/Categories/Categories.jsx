@@ -46,7 +46,7 @@ const Categories = ({ sectionTitle, fetchFunction }) => {
       <Heading w="100%" size={["2xl"]} textAlign={["center", "center", "start"]} >{sectionTitle}</Heading>
       <SimpleGrid w="100%" py={5} columns={[1, 2, 3]} columnGap={10} rowGap={10}>
         {categories.map((category, i) => (
-          <CategoryCard key={i} category={category.name} link={category.link} start={category.start} end={category.end} />
+          <CategoryCard key={i} category={category.name} link={`search?slang=&page=1&categories=[${category.name.toLowerCase()}]`} start={category.start} end={category.end} />
         ))}
       </SimpleGrid>
     </VStack>
