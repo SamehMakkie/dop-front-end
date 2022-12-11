@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import Filter from "../views/Filter/Filter";
 import Footer from "../views/Footer/Footer";
 import NavBar from "../views/NavBar/NavBar";
+import SearchResults from "../views/SearchResults/SearchResults";
 
 const Search = () => {
   const router = useRouter();
@@ -23,7 +24,7 @@ const Search = () => {
             </GridItem>
           </Show>
           <GridItem colSpan={[3, 3, 2]}>
-            <Heading w="100%">Right</Heading>
+            <SearchResults />
           </GridItem>
         </SimpleGrid>
       </VStack>
