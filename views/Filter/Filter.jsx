@@ -10,20 +10,19 @@ import {
   SliderTrack,
   VStack,
 } from "@chakra-ui/react";
-import { useRouter } from "next/router";
+import { useEffect } from "react";
 import { useState } from "react";
 import FilterStack from "../../components/FilterStack/FilterStack";
 
 const categories = ["Action", "Adventure", "FPS", "Strategy"];
 
-const Filter = () => {
-  const router = useRouter();
+// Function that checks if the target the array arr contains the target array
+const isInArray = (arr, target) => target.every((v) => arr.includes(v));
+
+const Filter = ({ query }) => {
   const [maxPrice, setMaxPrice] = useState(250);
   const [minAge, setMinAge] = useState(5);
   const [selectedCategories, setSelectedCategories] = useState([]);
-
-  console.log(router.query);
-  console.log(selectedCategories)
 
   const handleCheckBoxChange = (e) => {
     const value = e.target.value;
@@ -42,6 +41,33 @@ const Filter = () => {
     }
   };
 
+  // takes the categories query from link
+  useEffect(() => {
+    const categoriesString = query.categories;
+    if (categoriesString) {
+      const firstChar = Array.from(categoriesString)[0];
+      const lastChar =
+        Array.from(categoriesString)[categoriesString.length - 1];
+
+      if (firstChar == "[" && lastChar == "]") {
+        const categoriesWithoutBrackets = categoriesString.slice(
+          1,
+          categoriesString.length - 1
+        );
+        const queryCategories = categoriesWithoutBrackets
+          .split(",")
+          .map((string) => string.toLowerCase());
+        const lowerCaseCategories = categories.map((string) =>
+          string.toLowerCase()
+        );
+
+        if (isInArray(lowerCaseCategories, queryCategories)) {
+          setSelectedCategories(queryCategories);
+        }
+      }
+    }
+  }, [query]);
+
   return (
     <VStack
       w="100%"
@@ -59,7 +85,7 @@ const Filter = () => {
           max={250}
           defaultValue={250}
           aria-label="max-price"
-          //   colorScheme={"teal"}
+          colorScheme={"teal"}
           onChange={(val) => setMaxPrice(val)}>
           <SliderMark
             value={maxPrice}
@@ -79,10 +105,10 @@ const Filter = () => {
           <SliderThumb />
         </Slider>
       </FilterStack>
-      <FilterStack>
+      <VStack w="100%" spacing={5} alignItems="start">
         <Heading size="md">Category</Heading>
-        <CheckboxGroup colorScheme={"teal"} defaultValue={selectedCategories}>
-          <VStack w="100%" pl={10} py={3} spacing={5}>
+        <CheckboxGroup colorScheme={"teal"} value={selectedCategories}>
+          <VStack w="100%" pl={5} spacing={5}>
             {categories.map((category, i) => (
               <Checkbox
                 key={i}
@@ -95,7 +121,7 @@ const Filter = () => {
             ))}
           </VStack>
         </CheckboxGroup>
-      </FilterStack>
+      </VStack>
       <FilterStack>
         <Heading size="md">Age Restriction</Heading>
         <Slider
@@ -103,7 +129,7 @@ const Filter = () => {
           max={18}
           defaultValue={5}
           aria-label="min-age"
-          //   colorScheme={"teal"}
+          colorScheme={"teal"}
           onChange={(val) => setMinAge(val)}>
           <SliderMark
             value={minAge}

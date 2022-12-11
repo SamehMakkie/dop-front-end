@@ -6,7 +6,6 @@ import NavBar from "../views/NavBar/NavBar";
 
 const Search = () => {
   const router = useRouter();
-  console.log(router.query);
 
   return (
     <div>
@@ -20,7 +19,7 @@ const Search = () => {
         <SimpleGrid w="100%" columns={3}>
           <Show above="md">
             <GridItem colSpan={1}>
-              <Filter />
+              <Filter query={router.query} />
             </GridItem>
           </Show>
           <GridItem colSpan={[3, 3, 2]}>
