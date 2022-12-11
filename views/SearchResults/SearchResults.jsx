@@ -9,6 +9,7 @@ import {
   Flex,
   Heading,
   IconButton,
+  Show,
   SimpleGrid,
   useDisclosure,
   VStack,
@@ -99,28 +100,30 @@ const SearchResults = () => {
     <VStack w="100%" px={5} spacing={3} alignItems="start">
       <Flex w="100%" justifyContent={"space-between"} alignItems="center">
         <BreadCrumb />
-        <IconButton
-          ref={drawerBtnRef}
-          size={"lg"}
-          bgColor="transparent"
-          icon={<MdTune />}
-          onClick={onOpen}
-        />
-        <Drawer
-          isOpen={isOpen}
-          placement="left"
-          onClose={onClose}
-          finalFocusRef={drawerBtnRef}>
-          <DrawerOverlay />
-          <DrawerContent>
-            <DrawerCloseButton />
-            <DrawerHeader>Filter</DrawerHeader>
+        <Show below="md">
+          <IconButton
+            ref={drawerBtnRef}
+            size={"lg"}
+            bgColor="transparent"
+            icon={<MdTune />}
+            onClick={onOpen}
+          />
+          <Drawer
+            isOpen={isOpen}
+            placement="left"
+            onClose={onClose}
+            finalFocusRef={drawerBtnRef}>
+            <DrawerOverlay />
+            <DrawerContent>
+              <DrawerCloseButton />
+              <DrawerHeader>Filter</DrawerHeader>
 
-            <DrawerBody>
-              <DrawerFilter query={query} />
-            </DrawerBody>
-          </DrawerContent>
-        </Drawer>
+              <DrawerBody>
+                <DrawerFilter query={query} />
+              </DrawerBody>
+            </DrawerContent>
+          </Drawer>
+        </Show>
       </Flex>
       <Heading as="h1">Results</Heading>
       <SimpleGrid w="100%" columns={[1, 2, 2, 3]}>
