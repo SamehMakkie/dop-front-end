@@ -1,8 +1,7 @@
-import { GridItem, Heading, Show, SimpleGrid, VStack } from "@chakra-ui/react";
+import { GridItem, Show, SimpleGrid, VStack } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import Filter from "../views/Filter/Filter";
-import Footer from "../views/Footer/Footer";
-import NavBar from "../views/NavBar/NavBar";
+import NavigationWrapper from "../views/NavigationWrapper/NavigationWrapper";
 import Pagination from "../views/Pagination/Pagination";
 import SearchResults from "../views/SearchResults/SearchResults";
 
@@ -10,8 +9,7 @@ const Search = () => {
   const router = useRouter();
 
   return (
-    <div>
-      <NavBar />
+    <NavigationWrapper>
       <VStack
         w="100%"
         px={[5, 10, 10, 32, 36]}
@@ -30,8 +28,7 @@ const Search = () => {
         </SimpleGrid>
         <Pagination />
       </VStack>
-      <Footer />
-    </div>
+    </NavigationWrapper>
   );
 };
 

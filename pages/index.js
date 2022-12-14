@@ -4,6 +4,7 @@ import Carousel from "../views/Carousel/Carousel";
 import Categories from "../views/Categories/Categories";
 import Footer from "../views/Footer/Footer";
 import NavBar from "../views/NavBar/NavBar";
+import NavigationWrapper from "../views/NavigationWrapper/NavigationWrapper";
 
 function fetchBestSellerGames() {
   return [
@@ -205,8 +206,7 @@ const gameSections = [
 
 export default function Home() {
   return (
-    <div>
-      <NavBar />
+    <NavigationWrapper>
       <Carousel />
       <VStack
         w="100%"
@@ -223,8 +223,7 @@ export default function Home() {
           />
         ))}
         <Categories sectionTitle={"Categories"} />
-        <Footer />
       </VStack>
-    </div>
+    </NavigationWrapper>
   );
 }
