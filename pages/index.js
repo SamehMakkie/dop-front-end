@@ -1,10 +1,8 @@
-import { VStack } from "@chakra-ui/react";
 import GamesSection from "../views/GameSection/GameSection";
 import Carousel from "../views/Carousel/Carousel";
 import Categories from "../views/Categories/Categories";
-import Footer from "../views/Footer/Footer";
-import NavBar from "../views/NavBar/NavBar";
 import NavigationWrapper from "../views/NavigationWrapper/NavigationWrapper";
+import PageStackSpacing from "../views/PageStackSpacing/PageStackSpacing";
 
 function fetchBestSellerGames() {
   return [
@@ -208,12 +206,7 @@ export default function Home() {
   return (
     <NavigationWrapper>
       <Carousel />
-      <VStack
-        w="100%"
-        px={[5, 10, 10, 32, 36]}
-        pt={20}
-        spacing={20}
-        justifyContent="center">
+      <PageStackSpacing>
         {gameSections.map((section, i) => (
           <GamesSection
             key={i}
@@ -223,7 +216,7 @@ export default function Home() {
           />
         ))}
         <Categories sectionTitle={"Categories"} />
-      </VStack>
+      </PageStackSpacing>
     </NavigationWrapper>
   );
 }
