@@ -20,7 +20,6 @@ import { MdTune } from "react-icons/md";
 import BreadCrumb from "../../components/BreadCrumb/BreadCrumb";
 import GameCard from "../../components/Cards/GameCard";
 import DrawerFilter from "../Filter/DrawerFilter";
-import Filter from "../Filter/Filter";
 
 function fetchDumbData() {
   return [

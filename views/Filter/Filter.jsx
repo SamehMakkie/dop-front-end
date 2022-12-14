@@ -14,7 +14,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import FilterStack from "../../components/FilterStack/FilterStack";
 
-const categories = ["Action", "Adventure", "FPS", "Strategy"];
+const categories = ["Action", "Adventure", "Role-Playing", "Simulation", "Strategy", "Sports-and-Racing"];
 
 // Function that checks if the target the array arr contains the target array
 const isInArray = (arr, target) => target.every((v) => arr.includes(v));

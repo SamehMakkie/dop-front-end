@@ -32,12 +32,6 @@ const categories = [
     start: "#FFA62E",
     end: "#EA4D2C"
   },
-  {
-    name: "Sports & Racing",
-    link: "",
-    start: "#FFCDA5",
-    end: "#EE4DFF"
-  },
 ];
 
 const Categories = ({ sectionTitle, fetchFunction }) => {
@@ -48,6 +42,7 @@ const Categories = ({ sectionTitle, fetchFunction }) => {
         {categories.map((category, i) => (
           <CategoryCard key={i} category={category.name} link={`search?slang=&page=1&categories=[${category.name.toLowerCase()}]`} start={category.start} end={category.end} />
         ))}
+        <CategoryCard category={"Sports & Racing"} link={`search?slang=&page=1&categories=[${'sports-and-racing'}]`} start="#FFCDA5" end="#EE4DFF" />
       </SimpleGrid>
     </VStack>
   );
