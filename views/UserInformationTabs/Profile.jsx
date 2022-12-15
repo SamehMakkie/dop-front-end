@@ -51,7 +51,7 @@ export default function Profile() {
           </Stack>
         </FormControl>
         <FormControl id="userName" isRequired>
-          <FormLabel>User name</FormLabel>
+          <FormLabel>Username</FormLabel>
           <Input
             placeholder="UserName"
             _placeholder={{ color: "gray.500" }}
