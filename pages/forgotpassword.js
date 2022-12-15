@@ -38,7 +38,7 @@ const ForgotPassword = () => {
           boxShadow="lg">
           <VStack w="100%" spacing={2}>
             <Heading>Forgot Your Password</Heading>
-            <Text w="100%">You{"'"}ll get an email with a reset link</Text>
+            <Text w="100%">You{"'"}ll get an email with a reset password</Text>
           </VStack>
           <FormControl>
             <Input w="100%" type="email" placeholder="john-doe@example.com" />
