@@ -8,16 +8,16 @@ const images = [
   {
     link: "",
     image:
-      "https://nmswp.azureedge.net/wp-content/uploads/2018/07/homepage-features-explore-768x432.jpg",
+      "https://images7.alphacoders.com/115/1151164.jpg",
   },
 
   {
     link: "",
-    image: "https://cdn.mos.cms.futurecdn.net/dwaSXskCthYLg7vHUzdFSG.jpg",
+    image: "https://cdn.mos.cms.futurecdn.net/62ryjABuyifaRQnsbKhhGD.jpg",
   },
   {
     link: "",
-    image: "https://www.nme.com/wp-content/uploads/2022/10/No-Mans-Sky.jpg",
+    image: "https://www.gamespot.com/a/uploads/screen_kubrick/1574/15746725/3843530-bfgp_v8.jpg",
   },
 ];
 
