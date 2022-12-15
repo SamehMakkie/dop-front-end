@@ -7,8 +7,7 @@ import NavigationWrapper from "../../views/NavigationWrapper/NavigationWrapper";
 const images = [
   {
     link: "",
-    image:
-      "https://images7.alphacoders.com/115/1151164.jpg",
+    image: "https://images7.alphacoders.com/115/1151164.jpg",
   },
 
   {
@@ -17,7 +16,8 @@ const images = [
   },
   {
     link: "",
-    image: "https://www.gamespot.com/a/uploads/screen_kubrick/1574/15746725/3843530-bfgp_v8.jpg",
+    image:
+      "https://www.gamespot.com/a/uploads/screen_kubrick/1574/15746725/3843530-bfgp_v8.jpg",
   },
 ];
 
@@ -29,6 +29,9 @@ const gameInfo = {
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
   ageRestriction: 12,
   categories: ["Action", "Adventure"],
+  developer: "DICE",
+  publisher: "Electronic arts",
+  releaseDate: "6 October 2021",
   sysReq: {
     min: {
       os: "windows 7",
@@ -75,6 +78,25 @@ const GamePage = () => {
               </Text>{" "}
               {gameInfo.ageRestriction + "+"}
             </Text>
+            <Text w="100%">
+              <Text as="span" fontWeight={"bold"}>
+                Developer:{" "}
+              </Text>{" "}
+              {gameInfo.developer}
+            </Text>
+            <Text w="100%">
+              <Text as="span" fontWeight={"bold"}>
+                Publisher:{" "}
+              </Text>{" "}
+              {gameInfo.publisher}
+            </Text>
+            <Text w="100%">
+              <Text as="span" fontWeight={"bold"}>
+                Release date:{" "}
+              </Text>{" "}
+              {gameInfo.releaseDate}
+            </Text>
+
             <Text w="100%">
               <Text as="span" fontWeight={"bold"}>
                 Categories:{" "}

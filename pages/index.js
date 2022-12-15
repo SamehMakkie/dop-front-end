@@ -160,7 +160,7 @@ function fetchRecentlyAddedGames() {
       price: "$49",
     },
     {
-      link: "https://google.com",
+      link: "/games/123",
       src: "https://www.mobygames.com/images/covers/l/700892-rocket-league-playstation-4-front-cover.png",
       name: "Rocket League",
       rating: 4.3,
@@ -188,7 +188,7 @@ function fetchRecentlyAddedGames() {
       price: "$49",
     },
     {
-      link: "https://google.com",
+      link: "/games/123",
       src: "https://www.mobygames.com/images/covers/l/700892-rocket-league-playstation-4-front-cover.png",
       name: "Rocket League",
       rating: 4.3,
