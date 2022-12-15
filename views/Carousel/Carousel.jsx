@@ -15,33 +15,11 @@ const settings = {
   slidesToScroll: 1,
 };
 
-export default function Carousel() {
+export default function Carousel({cards}) {
   const [slider, setSlider] = useState(null);
 
   const top = useBreakpointValue({ base: "90%", md: "50%" });
   const side = useBreakpointValue({ base: "30%", md: "40px" });
-
-  const cards = [
-    {
-      link: "",
-      image:
-        "https://www.callofduty.com/content/dam/atvi/callofduty/cod-touchui/blog/hero/mw-wz/VGD-WZ-S2-POIS-TOUT.jpg",
-    },
-    {
-      link: "",
-      image:
-        "https://www.gtplanet.net/wp-content/uploads/2021/08/ForzaHorizon5_KeyArt_Horiz_RGB_Final.jpg",
-    },
-    {
-      link: "",
-      image: "https://images7.alphacoders.com/115/1151164.jpg",
-    },
-    {
-      link: "",
-      image:
-        "https://wallpaperboat.com/wp-content/uploads/2020/11/16/61053/no-mans-sky-23.jpg",
-    },
-  ];
 
   return (
     <Box position={"relative"} width={"full"} overflow={"hidden"}>
