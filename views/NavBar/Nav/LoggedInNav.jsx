@@ -11,6 +11,7 @@ import {
   MenuList,
   Show,
 } from "@chakra-ui/react";
+import Link from "next/link";
 import { useState } from "react";
 import { BsGrid, BsGridFill } from "react-icons/bs";
 import { MdOutlineShoppingCart, MdShoppingCart } from "react-icons/md";
@@ -22,16 +23,22 @@ import { clearUser } from "../../../redux/features/userSlice";
 const LoggedInNav = () => {
   const dispatch = useDispatch();
   const [numOfItemsInCart, setNumOfItemsInCart] = useState(1);
-  const isSearchVisible = useSelector((state) => state.searchVisibilityReducer.value);
-  const user = useSelector((state) => state.userReducer.value)
+  const isSearchVisible = useSelector(
+    (state) => state.searchVisibilityReducer.value
+  );
+  const user = useSelector((state) => state.userReducer.value);
 
   return (
     <>
       <Show below="md">
         <IconLink
           href={""}
-          defaultIcon={ isSearchVisible ? <CloseIcon boxSize="14px" /> : <Search2Icon  />}
-          hoverIcon={isSearchVisible ? <CloseIcon boxSize="14px" /> : <Search2Icon />}
+          defaultIcon={
+            isSearchVisible ? <CloseIcon boxSize="14px" /> : <Search2Icon />
+          }
+          hoverIcon={
+            isSearchVisible ? <CloseIcon boxSize="14px" /> : <Search2Icon />
+          }
           onClick={() => dispatch(toggle())}
         />
       </Show>
@@ -70,7 +77,9 @@ const LoggedInNav = () => {
             _focus={{ bgColor: "white" }}>
             {user.username}
           </MenuItem>
-          <MenuItem>Profile</MenuItem>
+          <Link href={"/user/information"}>
+            <MenuItem>Profile</MenuItem>
+          </Link>
           <MenuDivider />
           <MenuItem onClick={() => dispatch(clearUser())}>Log out</MenuItem>
         </MenuList>
