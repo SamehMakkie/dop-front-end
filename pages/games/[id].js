@@ -1,6 +1,7 @@
 import { Heading, HStack, Show, Stack, Text, VStack } from "@chakra-ui/react";
 import GameActionCard from "../../components/Cards/GameActionCard";
 import Carousel from "../../views/Carousel/Carousel";
+import GameComments from "../../views/GameComments/GameComments";
 import NavigationWrapper from "../../views/NavigationWrapper/NavigationWrapper";
 
 const images = [
@@ -22,7 +23,7 @@ const images = [
 
 const gameInfo = {
   name: "Battlefield 2042",
-  isPurchased: false,
+  isPurchased: true,
   images,
   description:
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
@@ -113,6 +114,7 @@ const GamePage = () => {
           </VStack>
           <GameActionCard isPurchased={gameInfo.isPurchased} />
         </Stack>
+        <GameComments isPurchased={gameInfo.isPurchased} />
       </VStack>
     </NavigationWrapper>
   );
