@@ -34,6 +34,7 @@ const CartTable = ({ list, total }) => {
                     alt={game.name}
                     height="150px"
                     width={"100px"}
+                    minW={"100px"}
                     objectFit="cover"
                     rounded={"2xl"}
                   />

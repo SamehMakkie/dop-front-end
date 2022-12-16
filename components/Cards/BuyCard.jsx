@@ -36,7 +36,7 @@ const BuyCard = () => {
         <Text fontSize={"sm"}>{rating}</Text>
       </HStack>
       <Button w="100%" colorScheme={"teal"} variant="outline" onClick={handleAddToCart}>
-        Add to Card
+        Add to Cart
       </Button>
       <Button w="100%" colorScheme={"teal"}>
         Buy now
