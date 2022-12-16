@@ -91,6 +91,7 @@ const LibraryGameCard = ({ link, src, name, rating, price }) => {
         </Link>
         <Button
           w="100%"
+          mt={3}
           colorScheme={"teal"}
           onClick={handleDownloadButtonClick}>
           Download
