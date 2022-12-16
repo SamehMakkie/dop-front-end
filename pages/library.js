@@ -8,6 +8,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import LibraryGameCard from "../components/Cards/LibraryGameCard";
+import ProtectedRoute from "../components/ProtectedRoute/ProtectedRoute";
 import NavigationWrapper from "../views/NavigationWrapper/NavigationWrapper";
 
 function fetchLibraryGames() {
@@ -66,30 +67,32 @@ function fetchLibraryGames() {
 const Library = () => {
   return (
     <NavigationWrapper>
-      <VStack
-        w="100%"
-        px={[5, 10, 10, 32, 36]}
-        py={20}
-        spacing={5}
-        justifyContent="center">
-        <Heading w="100%" textAlign={{ base: "center", md: "start" }}>
-          Library
-        </Heading>
-        <SimpleGrid w="100%" columns={[1, 2, 3, 4]}>
-          {fetchLibraryGames().map((game, i) => (
-            <GridItem key={i} w="100%" colSpan={1}>
-              <Hide above="md">
-                <Center>
+      <ProtectedRoute>
+        <VStack
+          w="100%"
+          px={[5, 10, 10, 32, 36]}
+          py={20}
+          spacing={5}
+          justifyContent="center">
+          <Heading w="100%" textAlign={{ base: "center", md: "start" }}>
+            Library
+          </Heading>
+          <SimpleGrid w="100%" columns={[1, 2, 3, 4]}>
+            {fetchLibraryGames().map((game, i) => (
+              <GridItem key={i} w="100%" colSpan={1}>
+                <Hide above="md">
+                  <Center>
+                    <LibraryGameCard {...game} />
+                  </Center>
+                </Hide>
+                <Show above="md">
                   <LibraryGameCard {...game} />
-                </Center>
-              </Hide>
-              <Show above="md">
-                <LibraryGameCard {...game} />
-              </Show>
-            </GridItem>
-          ))}
-        </SimpleGrid>
-      </VStack>
+                </Show>
+              </GridItem>
+            ))}
+          </SimpleGrid>
+        </VStack>
+      </ProtectedRoute>
     </NavigationWrapper>
   );
 };

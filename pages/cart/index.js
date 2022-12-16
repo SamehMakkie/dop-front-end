@@ -6,6 +6,7 @@ import {
   SimpleGrid,
   VStack,
 } from "@chakra-ui/react";
+import ProtectedRoute from "../../components/ProtectedRoute/ProtectedRoute";
 import CartSummary from "../../views/CartViews/CartSummary";
 import CartTable from "../../views/CartViews/CartTable";
 import NavigationWrapper from "../../views/NavigationWrapper/NavigationWrapper";
@@ -46,28 +47,30 @@ const Cart = () => {
   const total = calculateTotalPrice();
   return (
     <NavigationWrapper>
-      <VStack
-        w="100%"
-        px={[5, 10, 10, 32, 36]}
-        py={20}
-        spacing={5}
-        justifyContent="center">
-        <Heading w="100%">Cart</Heading>
-        <SimpleGrid
+      <ProtectedRoute>
+        <VStack
           w="100%"
-          columns={{ base: 1, lg: 3 }}
-          columnGap={5}
-          rowGap={20}>
-          <GridItem w="100%" colSpan={{ base: 1, lg: 2 }}>
-            <CartTable list={fetchCartGames()} total={total} />
-          </GridItem>
-          <GridItem w="100%" colSpan={1}>
+          px={[5, 10, 10, 32, 36]}
+          py={20}
+          spacing={5}
+          justifyContent="center">
+          <Heading w="100%">Cart</Heading>
+          <SimpleGrid
+            w="100%"
+            columns={{ base: 1, lg: 3 }}
+            columnGap={5}
+            rowGap={20}>
+            <GridItem w="100%" colSpan={{ base: 1, lg: 2 }}>
+              <CartTable list={fetchCartGames()} total={total} />
+            </GridItem>
+            <GridItem w="100%" colSpan={1}>
               <Center>
                 <CartSummary sum={total} tax={50} />
               </Center>
-          </GridItem>
-        </SimpleGrid>
-      </VStack>
+            </GridItem>
+          </SimpleGrid>
+        </VStack>
+      </ProtectedRoute>
     </NavigationWrapper>
   );
 };
