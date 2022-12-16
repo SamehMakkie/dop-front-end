@@ -2,7 +2,7 @@ import { TiStarFullOutline, TiStarOutline } from "react-icons/ti";
 import { Button, Heading, HStack, Icon, Text, useToast, VStack } from "@chakra-ui/react";
 import { useState } from "react";
 
-const BuyCard = () => {
+const BuyCard = ({price}) => {
   const [rating, setRating] = useState(0);
   const array = [...Array(5).keys()];
   const toast = useToast()
@@ -22,7 +22,7 @@ const BuyCard = () => {
       borderWidth="1px"
       alignItems="center"
       justifyContent={"center"}>
-      <Heading fontSize={["2xl", "3xl"]}>See Rating</Heading>
+      <Heading fontSize={["2xl", "3xl"]}>{price}</Heading>
       <HStack>
         {array.map((star, index) => (
           <Icon

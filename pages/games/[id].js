@@ -23,6 +23,7 @@ const images = [
 
 const gameInfo = {
   name: "Battlefield 2042",
+  price: "$49",
   isPurchased: false,
   images,
   description:
@@ -134,7 +135,7 @@ const GamePage = () => {
               </Stack>
             </VStack>
           </VStack>
-          <GameActionCard isPurchased={gameInfo.isPurchased} />
+          <GameActionCard isPurchased={gameInfo.isPurchased} price={gameInfo.price} />
         </Stack>
         <GameComments isPurchased={gameInfo.isPurchased} />
       </VStack>
