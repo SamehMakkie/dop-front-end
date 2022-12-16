@@ -9,7 +9,6 @@ import {
 } from "@chakra-ui/react";
 import LibraryGameCard from "../components/Cards/LibraryGameCard";
 import NavigationWrapper from "../views/NavigationWrapper/NavigationWrapper";
-import PageStackSpacing from "../views/PageStackSpacing/PageStackSpacing";
 
 function fetchLibraryGames() {
   return [
@@ -70,7 +69,7 @@ const Library = () => {
       <VStack
         w="100%"
         px={[5, 10, 10, 32, 36]}
-        pt={20}
+        py={20}
         spacing={5}
         justifyContent="center">
         <Heading w="100%" textAlign={{ base: "center", md: "start" }}>
