@@ -53,7 +53,7 @@ const Signup = () => {
           <Link href="/">
             <Image
               width="120px"
-              src="https://thumbs.dreamstime.com/b/letter-pixel-icon-logo-design-element-can-be-used-as-as-complement-to-96097118.jpg"
+              src="/DoPa128.png"
               alt="DoP logo"
             />
           </Link>
