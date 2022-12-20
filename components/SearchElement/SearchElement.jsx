@@ -24,7 +24,6 @@ const SearchElement = () => {
     // Replace multiple spaces with a single one
     let searchTerm = searchString.replace(/\s\s+/g, " ");
     searchTerm = searchString.replace(/[^a-zA-Z ]/g, "");
-    console.log(searchTerm);
 
     if (searchTerm == "" || searchTerm == " ") {
       router.push({pathname: "/search/", query: {slang: "", page: 1}});
@@ -32,7 +31,6 @@ const SearchElement = () => {
       searchTerm = searchTerm.trim();
       // Replace a space with a '-' character and convert the string to lower case
       searchTerm = searchTerm.replace(/\s+/g, "-").toLowerCase();
-      console.log(searchTerm);
       router.push({pathname: "/search/", query: {slang: searchTerm, page: 1}});
     }
   };

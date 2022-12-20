@@ -6,7 +6,10 @@ import {
   SimpleGrid,
   VStack,
 } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import ProtectedRoute from "../../components/ProtectedRoute/ProtectedRoute";
+import getCartItems from "../../services/getCartItems";
 import CartSummary from "../../views/CartViews/CartSummary";
 import CartTable from "../../views/CartViews/CartTable";
 import NavigationWrapper from "../../views/NavigationWrapper/NavigationWrapper";
@@ -37,14 +40,35 @@ function fetchCartGames() {
   ];
 }
 
-const calculateTotalPrice = () => {
-  let total = 0;
-  fetchCartGames().map((game) => (total += Number(game.price.slice(1))));
-  return total;
-};
+
 
 const Cart = () => {
+  const user = useSelector((state) => state.userReducer.value);
+  
+  const [games, setGames] = useState([])
+  const [fetchAgain, setFetchAgain] = useState(false)
+  
+  const calculateTotalPrice = () => {
+    let total = 0;
+    games.map((game) => (total += Number(game.game_price)));
+    return total;
+  };
+  
   const total = calculateTotalPrice();
+
+  useEffect(() => {
+    async function fetchCartItems() {
+      if (user) {
+        const {code, msg, data} = await getCartItems(user.id)
+        if (code >= 0) {
+          setGames(data)
+        }
+      }
+
+    }
+    fetchCartItems()
+  },  [fetchAgain])
+
   return (
     <NavigationWrapper>
       <ProtectedRoute>
@@ -61,11 +85,11 @@ const Cart = () => {
             columnGap={5}
             rowGap={20}>
             <GridItem w="100%" colSpan={{ base: 1, lg: 2 }}>
-              <CartTable list={fetchCartGames()} total={total} />
+              <CartTable list={games} total={total} setFetchAgain={setFetchAgain} />
             </GridItem>
             <GridItem w="100%" colSpan={1}>
               <Center>
-                <CartSummary sum={total} tax={50} />
+                <CartSummary gameIds={games.map(game => game.game_ıd)} sum={total} tax={3} />
               </Center>
             </GridItem>
           </SimpleGrid>

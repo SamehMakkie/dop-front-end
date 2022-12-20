@@ -7,21 +7,44 @@ import {
   useToast,
   VStack,
 } from "@chakra-ui/react";
-import { useState } from "react";
 import { useRef } from "react";
 import { useSelector } from "react-redux";
+import postComment from "../../services/postComment";
 
-const CommentEditor = () => {
+const CommentEditor = ({ gameId, setRefresh }) => {
   const user = useSelector((state) => state.userReducer.value);
   const textAreaRef = useRef();
-  const toast = useToast()
+  const toast = useToast();
 
-  const handlePostComment = () => {
+  const handlePostComment = async () => {
     // API POST Request
-    console.log(textAreaRef.current.value);
+    if (user) {
+      const { code, msg } = await postComment(
+        user.id,
+        gameId,
+        textAreaRef.current.value
+      );
+      if (code >= 0) {
+        setRefresh();
+        toast({
+          title: "Comment posted",
+          description: "Your comment has been posted successfully.",
+          status: "success",
+          isClosable: true,
+          position: "top-right",
+        });
+      }
+    }
     // Clear Textarea
-    textAreaRef.current.value = ""
-    toast({title: "Comment posted", description: "Your comment has been successfully posted.", duration: 1500, isClosable: true, status: 'success', position: "top-right" })
+    textAreaRef.current.value = "";
+    toast({
+      title: "Comment posted",
+      description: "Your comment has been successfully posted.",
+      duration: 1500,
+      isClosable: true,
+      status: "success",
+      position: "top-right",
+    });
   };
 
   return (
@@ -35,10 +58,7 @@ const CommentEditor = () => {
           placeholder="Here goes your comment"
           resize={"vertical"}
         />
-        <Button
-          colorScheme={"teal"}
-          onClick={handlePostComment}
-          >
+        <Button colorScheme={"teal"} onClick={handlePostComment}>
           Post
         </Button>
       </VStack>

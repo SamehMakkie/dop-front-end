@@ -5,10 +5,14 @@ import {
   Hide,
   Show,
   SimpleGrid,
+  Text,
   VStack,
 } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import LibraryGameCard from "../components/Cards/LibraryGameCard";
 import ProtectedRoute from "../components/ProtectedRoute/ProtectedRoute";
+import fetchLibrary from "../services/fetchLibrary";
 import NavigationWrapper from "../views/NavigationWrapper/NavigationWrapper";
 
 function fetchLibraryGames() {
@@ -64,7 +68,27 @@ function fetchLibraryGames() {
   ];
 }
 
+const apiLink = "http://194.27.78.83/dop/";
+
 const Library = () => {
+  const user = useSelector((state) => state.userReducer.value);
+  const [games, setGames] = useState([]);
+  console.log(games);
+
+  useEffect(() => {
+    async function getGames() {
+      if (user) {
+        const { code, msg, data } = await fetchLibrary(user.id);
+        console.log("=======================");
+        console.log(data);
+        console.log("=======================");
+
+        setGames(data);
+      }
+    }
+    getGames();
+  }, []);
+
   return (
     <NavigationWrapper>
       <ProtectedRoute>
@@ -78,15 +102,26 @@ const Library = () => {
             Library
           </Heading>
           <SimpleGrid w="100%" columns={[1, 2, 3, 4]}>
-            {fetchLibraryGames().map((game, i) => (
+            {games.length == 0 && <Text>You don{"'"}t have any games yet</Text>}
+            {games.map((game, i) => (
               <GridItem key={i} w="100%" colSpan={1}>
                 <Hide above="md">
                   <Center>
-                    <LibraryGameCard {...game} />
+                    <LibraryGameCard
+                      link={game.game_ıd}
+                      src={apiLink + game.game_picture}
+                      name={game.game_name}
+                      rating={game.game_rating}
+                    />
                   </Center>
                 </Hide>
                 <Show above="md">
-                  <LibraryGameCard {...game} />
+                  <LibraryGameCard
+                    link={game.game_ıd}
+                    src={apiLink + game.game_picture}
+                    name={game.game_name}
+                    rating={game.game_rating}
+                  />
                 </Show>
               </GridItem>
             ))}

@@ -22,7 +22,7 @@ import { motion } from "framer-motion";
 
 const MotionCard = motion(Card);
 
-const LibraryGameCard = ({ link, src, name, rating, price }) => {
+const LibraryGameCard = ({ link, src, name, rating }) => {
   const toast = useToast();
   const getHighlightedRating = () => {
     const ratingList = [];
@@ -71,7 +71,7 @@ const LibraryGameCard = ({ link, src, name, rating, price }) => {
       whileTap={{ scale: 0.9 }}
       transition={{ duration: 0.2 }}>
       <CardBody px={0} borderColor={"transparent"}>
-        <Link href={link}>
+        <Link href={"/games/" + link}>
           <VStack spacing={3} alignItems="start">
             <Image
               w="100%"

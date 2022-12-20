@@ -11,9 +11,31 @@ import {
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 
-const CartSummary = ({ sum, tax }) => {
-  const total = Number(sum) + Number(tax);
+const CartSummary = ({gameIds, sum, tax }) => {
+  const total = Number(sum) + Number(sum) * (Number(tax) / 100);
+  console.log(gameIds);
   const router = useRouter();
+
+
+  let hrefGameIds = ""
+  for (let i = 0; i < gameIds.length; ++i) {
+    hrefGameIds += gameIds[i] + "#"
+  }
+  
+  const query = {
+    game_id: hrefGameIds,
+    tax_percentage: tax,
+    total_price: +parseFloat(sum).toFixed(2),
+  } 
+  
+  console.log("=================");
+  console.log(query);
+  console.log("=================");
+
+  const handleBtnPressed = () => {
+    
+    router.push({pathname: "/cart/checkout", query});
+  }
 
   return (
     <VStack
@@ -30,11 +52,11 @@ const CartSummary = ({ sum, tax }) => {
           <Tbody>
             <Tr>
               <Td>Sum</Td>
-              <Td>${sum}</Td>
+              <Td>${+parseFloat(sum).toFixed(2)}</Td>
             </Tr>
             <Tr>
               <Td>Tax</Td>
-              <Td>${tax}</Td>
+              <Td>%{+parseFloat(tax).toFixed(2)}</Td>
             </Tr>
           </Tbody>
         </Table>
@@ -42,15 +64,13 @@ const CartSummary = ({ sum, tax }) => {
       <Text>
         Total:{" "}
         <Heading as={"span"} display={"inline"} fontSize="lg">
-          ${total}
+          ${+parseFloat(total).toFixed(2)}
         </Heading>
       </Text>
       <Button
         w="100%"
         colorScheme={"teal"}
-        onClick={() => {
-          router.push("/cart/checkout");
-        }}>
+        onClick={handleBtnPressed}>
         Checkout
       </Button>
     </VStack>

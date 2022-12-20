@@ -1,9 +1,8 @@
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
-import { Button, Hide, HStack, IconButton, Show, Text } from "@chakra-ui/react";
+import { Button, HStack, IconButton } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 
 const maxNumOfPage = 10;
-const pages = [...Array(maxNumOfPage).keys()];
 
 const Pagination = () => {
   const router = useRouter();

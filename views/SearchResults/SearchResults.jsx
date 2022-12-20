@@ -10,6 +10,7 @@ import {
   IconButton,
   Show,
   SimpleGrid,
+  Text,
   useDisclosure,
   VStack,
 } from "@chakra-ui/react";
@@ -18,6 +19,7 @@ import { useRef } from "react";
 import { MdTune } from "react-icons/md";
 import BreadCrumb from "../../components/BreadCrumb/BreadCrumb";
 import GameCard from "../../components/Cards/GameCard";
+import searchByName from "../../services/searchByName";
 import DrawerFilter from "../Filter/DrawerFilter";
 
 function fetchDumbData() {
@@ -88,11 +90,12 @@ function fetchDumbData() {
   ];
 }
 
-const SearchResults = () => {
+const SearchResults = ({ data }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const drawerBtnRef = useRef();
   const router = useRouter();
   const query = router.query;
+  console.log(query);
 
   return (
     <VStack w="100%" px={5} spacing={3} alignItems="start">
@@ -124,13 +127,29 @@ const SearchResults = () => {
         </Show>
       </Flex>
       <Heading as="h1">Results</Heading>
-      <SimpleGrid w="100%" columns={[1, 2, 2, 3]}>
-        {fetchDumbData().map((game, i) => (
-          <GameCard key={i} {...game} />
-        ))}
-      </SimpleGrid>
+      {data.length == 0 ? <Text>No game was found</Text> : (
+        <SimpleGrid w="100%" columns={[1, 2, 2, 3]}>
+          {data.map((game, i) => (
+            <GameCard
+              key={i}
+              link={`/games/${game.game_id}`}
+              src={"http://194.27.78.83/dop/" + game.game_picture}
+              name={game.game_name}
+              rating={game.game_rating}
+              price={game.game_price}
+            />
+          ))}
+        </SimpleGrid>
+      )}
     </VStack>
   );
 };
 
 export default SearchResults;
+
+// "game_id": "33",
+// "game_name": "Garry's Mod ",
+// "game_price": "9.99",
+// "game_genre": "Simulation",
+// "game_rating": 0,
+// "game_picture": "gamepicture/33.jpg"

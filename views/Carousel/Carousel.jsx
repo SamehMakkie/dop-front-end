@@ -15,7 +15,7 @@ const settings = {
   slidesToScroll: 1,
 };
 
-export default function Carousel({cards}) {
+export default function Carousel({ cards }) {
   const [slider, setSlider] = useState(null);
 
   const top = useBreakpointValue({ base: "90%", md: "50%" });
@@ -46,7 +46,8 @@ export default function Carousel({cards}) {
         as={ChevronLeftIcon}
         aria-label="left-arrow"
         transform={"translate(0%, -50%)"}
-        onClick={() => slider?.slickPrev()} />
+        onClick={() => slider?.slickPrev()}
+      />
       {/* Right Icon */}
       <IconButton
         top={top}
@@ -58,21 +59,24 @@ export default function Carousel({cards}) {
         as={ChevronRightIcon}
         aria-label="right-arrow"
         transform={"translate(0%, -50%)"}
-        onClick={() => slider?.slickNext()} />
+        onClick={() => slider?.slickNext()}
+      />
       {/* Slider */}
       <Slider {...settings} ref={(slider) => setSlider(slider)}>
-        {cards.map((card, index) => (
-          <Link key={index} href={card.link}>
-            <Box
-              height={["65vw", "60vw", "50vw"]}
-              position="relative"
-              objectFit={"cover"}
-              backgroundPosition="center"
-              backgroundRepeat="no-repeat"
-              backgroundSize="cover"
-              backgroundImage={`url(${card.image})`}></Box>
-          </Link>
-        ))}
+        {cards?.map((card, index) => {
+          return (
+            <Link key={index} href={card.link}>
+              <Box
+                height={["65vw", "60vw", "50vw"]}
+                position="relative"
+                objectFit={"cover"}
+                backgroundPosition="center"
+                backgroundRepeat="no-repeat"
+                backgroundSize="cover"
+                backgroundImage={`url(${card.image})`}></Box>
+            </Link>
+          );
+        })}
       </Slider>
     </Box>
   );

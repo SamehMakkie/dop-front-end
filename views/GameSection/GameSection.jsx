@@ -1,5 +1,5 @@
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
-import { Box, Flex, Heading, Hide, IconButton, VStack } from "@chakra-ui/react";
+import { Box, Flex, Heading, IconButton, VStack } from "@chakra-ui/react";
 import { useScroll } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import GameCard from "../../components/Cards/GameCard";
@@ -22,7 +22,7 @@ const GamesSection = ({ i, sectionTitle, fetchFunction }) => {
   };
 
   useEffect(() => {
-    setGames(fetchFunction());
+    setGames(fetchFunction);
     setTimeout(() => setLoading(false), 1000);
   }, [fetchFunction]);
 
@@ -64,11 +64,11 @@ const GamesSection = ({ i, sectionTitle, fetchFunction }) => {
             : games.map((game, i) => (
                 <GameCard
                   key={i}
-                  src={game.src}
-                  name={game.name}
-                  rating={game.rating}
-                  price={game.price}
-                  link={game.link}
+                  src={`http://194.27.78.83/dop/${game.game_picture}`}
+                  name={game.game_name}
+                  rating={game.game_rating}
+                  price={"$ " + game.game_price}
+                  link={`/games/${game.game_id}`}
                 />
               ))}
         </Box>

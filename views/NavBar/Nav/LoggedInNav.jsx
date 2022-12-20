@@ -12,21 +12,40 @@ import {
   Show,
 } from "@chakra-ui/react";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect } from "react";
+// import { useState } from "react";
 import { BsGrid, BsGridFill } from "react-icons/bs";
 import { MdOutlineShoppingCart, MdShoppingCart } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import IconLink from "../../../components/IconLink/IconLink";
+import { setNumOfItems } from "../../../redux/features/cartSlice";
 import { toggle } from "../../../redux/features/searchVisibilitySlice";
 import { clearUser } from "../../../redux/features/userSlice";
+import getCartItems from "../../../services/getCartItems";
 
 const LoggedInNav = () => {
   const dispatch = useDispatch();
-  const [numOfItemsInCart, setNumOfItemsInCart] = useState(1);
+  // const [numOfItemsInCart, setNumOfItemsInCart] = useState(0);
+  const numOfItemsInCart = useSelector((state) => state.cartReducer.value);
+  const user = useSelector((state) => state.userReducer.value);
   const isSearchVisible = useSelector(
     (state) => state.searchVisibilityReducer.value
   );
-  const user = useSelector((state) => state.userReducer.value);
+  
+
+    useEffect(() => {
+      async function fetchCartItems() {
+        if (user) {
+          const {code, msg, data} = await getCartItems(user.id)
+          if (code >= 0) {
+            dispatch(setNumOfItems(data.length))
+            // setNumOfItemsInCart(data.length)
+          }
+        }
+  
+      }
+      fetchCartItems()
+    }, [])
 
   return (
     <>
