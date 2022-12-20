@@ -243,8 +243,8 @@ const Checkout = () => {
               Tax: {query.tax_percentage}%
             </Heading>
             <Heading w="100%">
-              Total: {priceAfterTax && "$"}
-              {priceAfterTax}
+              Total: {+parseFloat(priceAfterTax).toFixed(2) && "$"}
+              {+parseFloat(priceAfterTax).toFixed(2)}
             </Heading>
             <Button w="100%" colorScheme={"teal"} onClick={handlePurchase}>
               Buy

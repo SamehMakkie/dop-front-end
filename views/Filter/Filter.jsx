@@ -10,11 +10,19 @@ import {
   SliderTrack,
   VStack,
 } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useState } from "react";
 import FilterStack from "../../components/FilterStack/FilterStack";
 
-const categories = ["Action", "Adventure", "Role-Playing", "Simulation", "Strategy", "Sports-and-Racing"];
+const categories = [
+  "Action",
+  "Adventure",
+  "Role-Playing",
+  "Simulation",
+  "Strategy",
+  "Sports & Racing",
+];
 
 // Function that checks if the target the array arr contains the target array
 const isInArray = (arr, target) => target.every((v) => arr.includes(v));
@@ -23,10 +31,13 @@ const Filter = ({ query }) => {
   const [maxPrice, setMaxPrice] = useState(250);
   const [minAge, setMinAge] = useState(5);
   const [selectedCategories, setSelectedCategories] = useState([]);
+  const router = useRouter();
 
   const handleCheckBoxChange = (e) => {
     const value = e.target.value;
-    const index = selectedCategories.toString().indexOf(value);
+    const index = selectedCategories?.toString().indexOf(value);
+
+    // if (selectedCategories) {
     if (index > -1) {
       // Remove category from the array
       setSelectedCategories(
@@ -39,33 +50,79 @@ const Filter = ({ query }) => {
       let temp = [...selectedCategories, value.toString()];
       setSelectedCategories(temp);
     }
+    // }
   };
 
-  // takes the categories query from link
-  useEffect(() => {
-    const categoriesString = query.categories;
-    if (categoriesString) {
-      const firstChar = Array.from(categoriesString)[0];
-      const lastChar =
-        Array.from(categoriesString)[categoriesString.length - 1];
+  // // takes the categories query from link
+  // useEffect(() => {
+  //   const categoriesString = query.categories;
+  //   if (categoriesString) {
+  //     const firstChar = Array.from(categoriesString)[0];
+  //     const lastChar =
+  //       Array.from(categoriesString)[categoriesString.length - 1];
 
-      if (firstChar == "[" && lastChar == "]") {
-        const categoriesWithoutBrackets = categoriesString.slice(
-          1,
-          categoriesString.length - 1
-        );
-        const queryCategories = categoriesWithoutBrackets
-          .split(",")
-          .map((string) => string.toLowerCase());
-        const lowerCaseCategories = categories.map((string) =>
-          string.toLowerCase()
-        );
+  //     if (firstChar == "[" && lastChar == "]") {
+  //       const categoriesWithoutBrackets = categoriesString.slice(
+  //         1,
+  //         categoriesString.length - 1
+  //       );
+  //       const queryCategories = categoriesWithoutBrackets
+  //         .split(",")
+  //         .map((string) => string.toLowerCase());
+  //       const lowerCaseCategories = categories.map((string) =>
+  //         string.toLowerCase()
+  //       );
 
-        if (isInArray(lowerCaseCategories, queryCategories)) {
-          setSelectedCategories(queryCategories);
-        }
+  //       if (isInArray(lowerCaseCategories, queryCategories)) {
+  //         setSelectedCategories(queryCategories);
+  //       }
+  //     }
+  //   }
+  // }, [query]);
+
+  const apply = () => {
+    let genreIdsString = "";
+    console.log("selectedCategories");
+    console.log(selectedCategories);
+    // if (selectedCategories) {
+    const tempSelectedCategories = selectedCategories?.filter(
+      (category) => category != ""
+    );
+
+    for (let i = 0; i < tempSelectedCategories?.length; ++i) {
+      genreIdsString += tempSelectedCategories[i] + "#";
+    }
+
+    const textCategories = tempSelectedCategories?.map(
+      (id) => categories[id - 1]
+    );
+    let queryCategoriesString = "";
+    for (let i = 0; i < textCategories?.length; i++) {
+      queryCategoriesString += textCategories[i];
+      if (i != textCategories.length - 1) {
+        queryCategoriesString += ",";
       }
     }
+    queryCategoriesString = "[" + queryCategoriesString + "]";
+    queryCategoriesString = queryCategoriesString.toLowerCase();
+
+    const newQuery = {
+      categories: queryCategoriesString,
+      genre_ids: genreIdsString,
+      maxPrice,
+      minAge,
+    };
+
+    router.push({ pathname: "/search", query: newQuery });
+    // }
+  };
+
+  useEffect(() => {
+    const genreIds = query.genre_ids?.split("#");
+    async function AsyncSet() {
+      await setSelectedCategories(genreIds);
+    }
+    AsyncSet;
   }, [query]);
 
   return (
@@ -114,7 +171,7 @@ const Filter = ({ query }) => {
                 key={i}
                 w="100%"
                 borderRadius={"2xl"}
-                value={category.toLowerCase()}
+                value={(i + 1).toString()}
                 onChange={handleCheckBoxChange}>
                 {category}
               </Checkbox>
@@ -126,7 +183,7 @@ const Filter = ({ query }) => {
         <Heading size="md">Age Restriction</Heading>
         <Slider
           min={5}
-          max={18}
+          max={21}
           defaultValue={5}
           aria-label="min-age"
           colorScheme={"teal"}
@@ -150,7 +207,9 @@ const Filter = ({ query }) => {
         </Slider>
       </FilterStack>
       <VStack pt={3} alignItems="start">
-        <Button colorScheme={"teal"}>Apply</Button>
+        <Button colorScheme={"teal"} onClick={apply}>
+          Apply
+        </Button>
       </VStack>
     </VStack>
   );

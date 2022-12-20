@@ -50,6 +50,14 @@ export default function Profile() {
             </Center>
           </Stack>
         </FormControl>
+        <FormControl id="email" isRequired>
+          <FormLabel>Email address</FormLabel>
+          <Input
+            placeholder="your-email@example.com"
+            _placeholder={{ color: "gray.500" }}
+            type="email"
+          />
+        </FormControl>
         <FormControl id="userName" isRequired>
           <FormLabel>Username</FormLabel>
           <Input
