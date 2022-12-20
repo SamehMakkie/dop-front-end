@@ -22,7 +22,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../redux/features/userSlice";
 import checkEmail from "../services/checkEmail";
-import checkUsername from "../services/checkUserName";
+import checkUsername from "../services/checkUsername";
 import createAccount from "../services/createAccount";
 
 // Define an array of months
