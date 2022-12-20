@@ -82,8 +82,7 @@ const Filter = ({ query }) => {
 
   const apply = () => {
     let genreIdsString = "";
-    console.log("selectedCategories");
-    console.log(selectedCategories);
+    
     // if (selectedCategories) {
     const tempSelectedCategories = selectedCategories?.filter(
       (category) => category != ""

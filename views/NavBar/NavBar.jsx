@@ -2,7 +2,6 @@ import {
   Divider,
   GridItem,
   Image,
-  Link,
   Show,
   SimpleGrid,
   useMediaQuery,
@@ -11,6 +10,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import SearchElement from "../../components/SearchElement/SearchElement";
 import { setFalse } from "../../redux/features/searchVisibilitySlice";
+import Link from "next/link";
 import Nav from "./Nav/Nav";
 
 const NavBar = () => {
