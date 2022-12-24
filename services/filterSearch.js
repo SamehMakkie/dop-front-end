@@ -20,7 +20,7 @@ async function filterSearch(maxPrice, minAge, genres_ids) {
     });
     return {code: res.data.code, msg: res.data.message, data: res.data.data};
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 }
 

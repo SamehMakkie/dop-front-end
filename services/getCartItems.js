@@ -13,8 +13,6 @@ async function getCartItems(userId) {
       headers: { "Content-Type": "multipart/form-data" },
     });
 
-    console.log("----------------");
-    console.log(response.data);
     return {
       code: response.data.code,
       msg: response.data.message,

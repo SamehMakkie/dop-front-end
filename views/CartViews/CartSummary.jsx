@@ -13,7 +13,6 @@ import { useRouter } from "next/router";
 
 const CartSummary = ({gameIds, sum, tax }) => {
   const total = Number(sum) + Number(sum) * (Number(tax) / 100);
-  console.log(gameIds);
   const router = useRouter();
 
 
@@ -28,10 +27,6 @@ const CartSummary = ({gameIds, sum, tax }) => {
     total_price: +parseFloat(sum).toFixed(2),
   } 
   
-  console.log("=================");
-  console.log(query);
-  console.log("=================");
-
   const handleBtnPressed = () => {
     
     router.push({pathname: "/cart/checkout", query});

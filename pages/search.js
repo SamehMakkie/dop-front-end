@@ -39,11 +39,6 @@ export async function getServerSideProps(context) {
   let finalData = [];
   if (slang) {
     const { code, msg, data } = await searchByName(slang);
-    console.log("#########################");
-    console.log(slang);
-    console.log(code);
-    console.log(msg);
-    console.log(data);
 
     finalData = data;
   } else {

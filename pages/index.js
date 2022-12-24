@@ -1,23 +1,39 @@
 import GamesSection from "../views/GameSection/GameSection";
-import Carousel from "../views/Carousel/Carousel";
 import Categories from "../views/Categories/Categories";
 import NavigationWrapper from "../views/NavigationWrapper/NavigationWrapper";
 import PageStackSpacing from "../views/PageStackSpacing/PageStackSpacing";
 import fetchMainPageData from "../services/fetchMainPageData";
+import Carousel from "../views/Carousel/Carousel";
+
+const carouselList = [
+  {
+    // Cyperpunk
+    link: "/games/27",
+    image: "/cyberPunk.png",
+  },
+  {
+    // NBA
+    link: "/games/41",
+    image: "/NBA.jpeg",
+  },
+  {
+    // Call of duty
+    link: "/games/7",
+    image: "/callOfDuty.png",
+  },
+];
 
 function fetchCarouselImages() {
   return [
     {
       // Cyperpunk
       link: "/games/27",
-      image:
-        "/cyberPunk.png",
+      image: "/cyberPunk.png",
     },
     {
       // NBA
       link: "/games/41",
-      image:
-        "/NBA.jpeg",
+      image: "/NBA.jpeg",
     },
     {
       // Call of duty
@@ -32,7 +48,7 @@ function fetchCarouselImages() {
   ];
 }
 
-export default function Home({ highestRated,  bestSellers, recently_added}) {
+export default function Home({ highestRated, bestSellers, recently_added }) {
   const gameSections = [
     {
       title: "Best Sellers",
@@ -47,9 +63,11 @@ export default function Home({ highestRated,  bestSellers, recently_added}) {
       data: recently_added,
     },
   ];
+
   return (
     <NavigationWrapper>
-      <Carousel cards={fetchCarouselImages()} />
+      <Carousel items={carouselList} />
+      {/* <Carousel cards={fetchCarouselImages()} /> */}
       <PageStackSpacing>
         {gameSections.map((section, i) => (
           <GamesSection
@@ -66,7 +84,6 @@ export default function Home({ highestRated,  bestSellers, recently_added}) {
 }
 
 export async function getServerSideProps() {
-
   const data = await fetchMainPageData();
   return {
     props: {

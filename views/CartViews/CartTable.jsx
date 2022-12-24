@@ -28,7 +28,6 @@ const CartTable = ({ list, total, setFetchAgain }) => {
   const toast = useToast();
 
   const handleDelete = async (gameId) => {
-    console.log(gameId);
     const { code, msg } = await deleteCartItem(user.id, gameId);
     if (code >= 0) {
       setFetchAgain((prev) => !prev);

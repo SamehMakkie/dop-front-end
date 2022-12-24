@@ -81,20 +81,6 @@ const Checkout = () => {
         duration: 1900,
       });
 
-      console.log("=======================");
-      console.log(
-        user.id +
-          " " +
-          query.game_id +
-          " " +
-          query.tax_percentage +
-          " " +
-          priceAfterTax +
-          " " +
-          formData.name
-      );
-      console.log("=======================");
-
       const { code, msg } = await pay(
         user.id,
         query.game_id,

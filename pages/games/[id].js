@@ -1,4 +1,4 @@
-import { Heading, HStack, Show, Stack, Text, VStack } from "@chakra-ui/react";
+import { Heading, Stack, Text, VStack } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -61,11 +61,10 @@ const apiLink = "http://194.27.78.83/dop/";
 
 const GamePage = () => {
   const user = useSelector((state) => state.userReducer.value);
-  const [refresh, setRefresh] = useState(false)
-  const [gameId, setGameId] = useState()
+  const [refresh, setRefresh] = useState(false);
+  const [gameId, setGameId] = useState();
   const [data, setData] = useState();
   const router = useRouter();
-  console.log(data);
 
   const getCarouseImages = () => {
     if (data) {
@@ -82,7 +81,7 @@ const GamePage = () => {
   useEffect(() => {
     async function fetchDetails() {
       const { id } = router.query;
-      setGameId(id)
+      setGameId(id);
 
       if (id) {
         if (user) {
@@ -103,7 +102,9 @@ const GamePage = () => {
         <Heading w="100%" px={[8, 0]}>
           {data?.game_name}
         </Heading>
-        <Carousel cards={getCarouseImages()} />
+        <Carousel items={getCarouseImages()} />
+        <VStack h={[5, 0]}></VStack>
+        {/* <Carousel cards={getCarouseImages()} /> */}
         <Stack
           w="100%"
           px={[8, 0]}
@@ -186,7 +187,12 @@ const GamePage = () => {
             id={gameId}
           />
         </Stack>
-        <GameComments gameId={gameId} comments={data?.game_comments} isPurchased={data?.download_visible} setRefresh={setRefresh} />
+        <GameComments
+          gameId={gameId}
+          comments={data?.game_comments}
+          isPurchased={data?.download_visible}
+          setRefresh={setRefresh}
+        />
       </VStack>
     </NavigationWrapper>
   );

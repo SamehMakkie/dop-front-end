@@ -82,7 +82,7 @@ const Filter = ({ query }) => {
 
   const apply = () => {
     let genreIdsString = "";
-    
+
     // if (selectedCategories) {
     const tempSelectedCategories = selectedCategories?.filter(
       (category) => category != ""
@@ -117,11 +117,11 @@ const Filter = ({ query }) => {
   };
 
   useEffect(() => {
-    const genreIds = query.genre_ids?.split("#");
     async function AsyncSet() {
+      const genreIds = query.genre_ids?.split("#");
       await setSelectedCategories(genreIds);
     }
-    AsyncSet;
+    AsyncSet();
   }, [query]);
 
   return (

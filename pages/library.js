@@ -73,15 +73,11 @@ const apiLink = "http://194.27.78.83/dop/";
 const Library = () => {
   const user = useSelector((state) => state.userReducer.value);
   const [games, setGames] = useState([]);
-  console.log(games);
 
   useEffect(() => {
     async function getGames() {
       if (user) {
         const { code, msg, data } = await fetchLibrary(user.id);
-        console.log("=======================");
-        console.log(data);
-        console.log("=======================");
 
         setGames(data);
       }

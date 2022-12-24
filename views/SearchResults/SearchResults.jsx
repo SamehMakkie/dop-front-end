@@ -95,7 +95,6 @@ const SearchResults = ({ data }) => {
   const drawerBtnRef = useRef();
   const router = useRouter();
   const query = router.query;
-  console.log(query);
 
   return (
     <VStack w="100%" px={5} spacing={3} alignItems="start">
@@ -127,7 +126,9 @@ const SearchResults = ({ data }) => {
         </Show>
       </Flex>
       <Heading as="h1">Results</Heading>
-      {data.length == 0 ? <Text>No game was found</Text> : (
+      {data.length == 0 ? (
+        <Text>No game was found</Text>
+      ) : (
         <SimpleGrid w="100%" columns={[1, 2, 2, 3]}>
           {data.map((game, i) => (
             <GameCard
