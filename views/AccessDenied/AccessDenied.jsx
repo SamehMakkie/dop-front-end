@@ -33,7 +33,7 @@ const AccessDenied = () => {
             onClick={() => {
               router.push("/signup");
             }}>
-            Sign Up
+            Register
           </Button>
         </HStack>
         <Button

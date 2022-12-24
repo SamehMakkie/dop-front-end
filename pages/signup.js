@@ -161,7 +161,7 @@ const Signup = () => {
             <Image width="120px" src="/DoPa128.png" alt="DoP logo" />
           </Link>
           <Heading as={"h1"} fontWeight="normal" size={"lg"}>
-            Sign Up
+            Register
           </Heading>
           <FormControl isRequired w="100%" isInvalid={res.username.code < 0}>
             <FormLabel>Username</FormLabel>
@@ -291,7 +291,7 @@ const Signup = () => {
             </Flex>
           </VStack>
           <Button w="100%" colorScheme={"teal"} onClick={handleSignUp}>
-            Sign Up
+            Register
           </Button>
           <Text>
             Already have an account?{" "}

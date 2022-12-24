@@ -165,7 +165,7 @@ const Signin = () => {
           <Text>
             Not a user?{" "}
             <Link href="/signup" color="blue.400">
-              Sign up
+              Register
             </Link>
           </Text>
         </VStack>
