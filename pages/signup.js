@@ -63,10 +63,6 @@ const Signup = () => {
   const [arePasswordsSame, setArePasswordsSame] = useState(true);
   const [isPasswordShown, setIsPasswordShown] = useState(false);
   const user = useSelector((state) => state.userReducer.value);
-  const [days, setDays] = useState([]);
-  const [day, setDay] = useState("");
-  const [month, setMonth] = useState("");
-  const [year, setYear] = useState("");
   const dispatch = useDispatch();
   const toast = useToast()
   const router = useRouter();
@@ -87,9 +83,8 @@ const Signup = () => {
       signup: { code: undefined, msg: undefined },
     });
 
-    const selectedMonth = month + 1 < 10 ? `0${month + 1}` : month;
-    const selectedDay = day < 10 ? `0${day}` : day;
-    const birthDate = `${year}-${selectedMonth}-${selectedDay}`;
+    
+    const birthDate = "1990-01-01";
     if (formInfo.password == formInfo.confirmPass) {
       setArePasswordsSame(true);
       const user = {
@@ -107,31 +102,6 @@ const Signup = () => {
       setArePasswordsSame(false);
     }
   };
-
-  useEffect(() => {
-    // Update the options for the day Select component based on the selected month and year
-    const updateDays = () => {
-      // Get the number of days in the selected month
-      let daysInMonth;
-      if (month === 1) {
-        // Check if the selected year is a leap year
-        if ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) {
-          daysInMonth = 29;
-        } else {
-          daysInMonth = 28;
-        }
-      } else {
-        daysInMonth = new Date(year, month + 1, 0).getDate();
-      }
-
-      // Generate an array of days (1 to daysInMonth)
-      const updatedDays = Array.from({ length: daysInMonth }, (_, i) => i + 1);
-
-      setDays(updatedDays);
-    };
-
-    updateDays();
-  }, [month, year]);
 
   useEffect(() => {
     if (user) {
@@ -247,49 +217,7 @@ const Signup = () => {
               <FormHelperText>Sorry, Just to double check</FormHelperText>
             )}
           </FormControl>
-          <VStack w="100%" alignItems={"start"}>
-            <FormControl isRequired>
-              <FormLabel>Date of birth</FormLabel>
-            </FormControl>
-            <Flex w="100%" justifyContent={"space-between"}>
-              <FormControl isRequired pr={1}>
-                <Select
-                  onChange={(e) => setDay(e.target.value)}
-                  placeholder="D">
-                  {days.map((day) => (
-                    <option key={day} value={day}>
-                      {day}
-                    </option>
-                  ))}
-                </Select>
-                <FormHelperText pl={4}>Day</FormHelperText>
-              </FormControl>
-              <FormControl isRequired pr={1}>
-                <Select
-                  onChange={(e) => setMonth(months.indexOf(e.target.value))}
-                  placeholder="M">
-                  {months.map((month) => (
-                    <option key={month} value={month}>
-                      {month}
-                    </option>
-                  ))}
-                </Select>
-                <FormHelperText pl={4}>Month</FormHelperText>
-              </FormControl>
-              <FormControl isRequired>
-                <Select
-                  onChange={(e) => setYear(e.target.value)}
-                  placeholder="Y">
-                  {years.map((year) => (
-                    <option key={year} value={year}>
-                      {year}
-                    </option>
-                  ))}
-                </Select>
-                <FormHelperText pl={4}>Year</FormHelperText>
-              </FormControl>
-            </Flex>
-          </VStack>
+          
           <Button w="100%" colorScheme={"teal"} onClick={handleSignUp}>
             Register
           </Button>
