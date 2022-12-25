@@ -60,14 +60,14 @@ const Categories = ({ sectionTitle, fetchFunction }) => {
             category={category.name}
             link={`search?slang=&page=1&categories=[${category.name.toLowerCase()}]&genre_ids=${
               category.id
-            }%23`}
+            }%23&maxPrice=250&minAge=5`}
             start={category.start}
             end={category.end}
           />
         ))}
         <CategoryCard
           category={"Sports & Racing"}
-          link={`search?slang=&page=1&categories=[${"sports-and-racing"}]&genre_ids=6%23`}
+          link={`search?slang=&page=1&categories=[${"sports-and-racing"}]&genre_ids=6%23&maxPrice=250&minAge=5`}
           start="#FFCDA5"
           end="#EE4DFF"
         />

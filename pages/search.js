@@ -5,7 +5,7 @@ import searchByName from "../services/searchByName";
 import Filter from "../views/Filter/Filter";
 import NavigationWrapper from "../views/NavigationWrapper/NavigationWrapper";
 import PageStackSpacing from "../views/PageStackSpacing/PageStackSpacing";
-import Pagination from "../views/Pagination/Pagination";
+// import Pagination from "../views/Pagination/Pagination";
 import SearchResults from "../views/SearchResults/SearchResults";
 
 const Search = ({ finalData }) => {
@@ -35,6 +35,7 @@ export default Search;
 export async function getServerSideProps(context) {
   const query = context.query;
   const slang = query.slang;
+  console.log(query);
 
   let finalData = [];
   if (slang) {
@@ -45,6 +46,7 @@ export async function getServerSideProps(context) {
     const maxPrice = query.maxPrice;
     const minAge = query.minAge;
     const genre_ids = query.genre_ids;
+    
 
     const { code, msg, data } = await filterSearch(maxPrice, minAge, genre_ids);
 
