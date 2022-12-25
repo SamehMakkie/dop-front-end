@@ -1,4 +1,4 @@
-import { Divider, Heading, VStack } from "@chakra-ui/react";
+import { Divider, Heading, Text, VStack } from "@chakra-ui/react";
 import Comment from "../../components/Comments/Comment";
 import CommentEditor from "../../components/Comments/CommentEditor";
 
@@ -29,9 +29,23 @@ const GameComments = ({ gameId, comments, isPurchased, setRefresh }) => {
       <Heading w="100%">Comments</Heading>
       <Divider />
       {isPurchased && <CommentEditor gameId={gameId} setRefresh={setRefresh} />}
-      {
-        comments && comments.map(comment => <Comment key={comment.comment_id} id={comment.comment_id} userId={comment.user_id} username={comment.user_name} avatar={comment.user_picture} gameId={comment.game_id} comment={comment.comment} /> )
-      }
+      {!comments || (Array.isArray(comments) && comments.length === 0) ? (
+        <Text fontSize={"lg"} lineHeight="250%">
+          No comments has been posted
+        </Text>
+      ) : (
+        comments.map((comment) => (
+          <Comment
+            key={comment.comment_id}
+            id={comment.comment_id}
+            userId={comment.user_id}
+            username={comment.user_name}
+            avatar={comment.user_picture}
+            gameId={comment.game_id}
+            comment={comment.comment}
+          />
+        ))
+      )}
     </VStack>
   );
 };

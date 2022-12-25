@@ -115,34 +115,34 @@ const GamePage = () => {
             w={["100%", "100%", "65%", "55%"]}
             maxW={{ md: "700px" }}
             lineHeight={"200%"}>
-            <Text w="100%">{data?.game_description}</Text>
+            <Text w="100%" fontSize={"lg"} lineHeight="250%">{data?.game_description}</Text>
             <br />
-            <Text w="100%">
+            <Text w="100%" fontSize={"lg"} lineHeight="250%">
               <Text as="span" fontWeight={"bold"}>
                 Age Restriction:{" "}
               </Text>{" "}
               {data?.game_age_restriction + "+"}
             </Text>
-            <Text w="100%">
+            <Text w="100%" fontSize={"lg"} lineHeight="250%">
               <Text as="span" fontWeight={"bold"}>
                 Developer:{" "}
               </Text>{" "}
               {data?.game_developer}
             </Text>
-            <Text w="100%">
+            <Text w="100%" fontSize={"lg"} lineHeight="250%">
               <Text as="span" fontWeight={"bold"}>
                 Publisher:{" "}
               </Text>{" "}
               {data?.game_publisher}
             </Text>
-            <Text w="100%">
+            <Text w="100%" fontSize={"lg"} lineHeight="250%">
               <Text as="span" fontWeight={"bold"}>
                 Release date:{" "}
               </Text>{" "}
               {data?.game_release_date}
             </Text>
 
-            <Text w="100%">
+            <Text w="100%" fontSize={"lg"} lineHeight="250%">
               <Text as="span" fontWeight={"bold"}>
                 Categories:{" "}
               </Text>
@@ -155,7 +155,7 @@ const GamePage = () => {
               })} */}
             </Text>
             <VStack w="100%" spacing={8} pt={5}>
-              <Heading w="100%" size={"md"}>
+              <Heading w="100%" size={"lg"}>
                 System requirements
               </Heading>
               <Stack w="100%" direction={["column", "row"]} spacing={5}>
@@ -169,7 +169,7 @@ const GamePage = () => {
                   <Text>Storage: {gameInfo.sysReq.min.storage}</Text>
                 </VStack>
                 <VStack w="50%" alignItems={"start"}>
-                  <Text fontWeight={"bold"}>Minimum</Text>
+                  <Text fontWeight={"bold"}>Recommended</Text>
                   <Text>OS: {gameInfo.sysReq.min.os}</Text>
                   <Text>CPU: {gameInfo.sysReq.min.cpu}</Text>
                   <Text>GPU: {gameInfo.sysReq.min.gpu}</Text>
