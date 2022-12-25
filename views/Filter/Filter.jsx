@@ -28,7 +28,7 @@ const categories = [
 const isInArray = (arr, target) => target.every((v) => arr.includes(v));
 
 const Filter = ({ query }) => {
-  const [maxPrice, setMaxPrice] = useState(250);
+  const [maxPrice, setMaxPrice] = useState(70);
   const [minAge, setMinAge] = useState(5);
   const [selectedCategories, setSelectedCategories] = useState([]);
   const router = useRouter();
@@ -115,8 +115,8 @@ const Filter = ({ query }) => {
         <Heading size={"md"}>Price</Heading>
         <Slider
           min={0}
-          max={250}
-          defaultValue={250}
+          max={70}
+          defaultValue={70}
           aria-label="max-price"
           colorScheme={"teal"}
           onChange={(val) => setMaxPrice(val)}>

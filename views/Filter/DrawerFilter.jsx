@@ -20,7 +20,7 @@ const categories = ["Action", "Adventure", "FPS", "Strategy"];
 const isInArray = (arr, target) => target.every((v) => arr.includes(v));
 
 const DrawerFilter = ({ query }) => {
-  const [maxPrice, setMaxPrice] = useState(250);
+  const [maxPrice, setMaxPrice] = useState(70);
   const [minAge, setMinAge] = useState(5);
   const [selectedCategories, setSelectedCategories] = useState([]);
 
@@ -36,7 +36,7 @@ const DrawerFilter = ({ query }) => {
       );
     } else {
       // Add category to the array
-      let temp = [...selectedCategories, value.toString()];
+      let temp = (selectedCategories || []).concat(value.toString());
       setSelectedCategories(temp);
     }
   };
