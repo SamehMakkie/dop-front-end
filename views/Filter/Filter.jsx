@@ -47,38 +47,11 @@ const Filter = ({ query }) => {
       );
     } else {
       // Add category to the array
-      let temp = [...selectedCategories, value.toString()];
+      let temp = (selectedCategories || []).concat(value.toString());
       setSelectedCategories(temp);
     }
     // }
   };
-
-  // // takes the categories query from link
-  // useEffect(() => {
-  //   const categoriesString = query.categories;
-  //   if (categoriesString) {
-  //     const firstChar = Array.from(categoriesString)[0];
-  //     const lastChar =
-  //       Array.from(categoriesString)[categoriesString.length - 1];
-
-  //     if (firstChar == "[" && lastChar == "]") {
-  //       const categoriesWithoutBrackets = categoriesString.slice(
-  //         1,
-  //         categoriesString.length - 1
-  //       );
-  //       const queryCategories = categoriesWithoutBrackets
-  //         .split(",")
-  //         .map((string) => string.toLowerCase());
-  //       const lowerCaseCategories = categories.map((string) =>
-  //         string.toLowerCase()
-  //       );
-
-  //       if (isInArray(lowerCaseCategories, queryCategories)) {
-  //         setSelectedCategories(queryCategories);
-  //       }
-  //     }
-  //   }
-  // }, [query]);
 
   const apply = () => {
     let genreIdsString = "";
@@ -123,6 +96,10 @@ const Filter = ({ query }) => {
     }
     AsyncSet();
   }, [query]);
+
+  if (!query) {
+    return;
+  }
 
   return (
     <VStack

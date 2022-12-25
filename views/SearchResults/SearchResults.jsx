@@ -96,6 +96,10 @@ const SearchResults = ({ data }) => {
   const router = useRouter();
   const query = router.query;
 
+  if (!data) {
+    return;
+  }
+
   return (
     <VStack w="100%" px={5} spacing={3} alignItems="start">
       <Flex w="100%" justifyContent={"space-between"} alignItems="center">

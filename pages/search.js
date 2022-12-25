@@ -35,7 +35,6 @@ export default Search;
 export async function getServerSideProps(context) {
   const query = context.query;
   const slang = query.slang;
-  console.log(query);
 
   let finalData = [];
   if (slang) {
