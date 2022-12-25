@@ -122,41 +122,11 @@ export default function Profile() {
           <Stack direction={["column", "row"]} spacing={6}>
             <Center>
               {imageFile ? (
-                <Avatar size="xl" src={URL.createObjectURL(imageFile)}>
-                  <AvatarBadge
-                    as={IconButton}
-                    size="sm"
-                    rounded="full"
-                    top="-10px"
-                    colorScheme="red"
-                    aria-label="remove Image"
-                    icon={<SmallCloseIcon />}
-                  />
-                </Avatar>
+                <Avatar size="xl" src={URL.createObjectURL(imageFile)} />
               ) : prevImageFile ? (
-                <Avatar size="xl" src={URL.createObjectURL(prevImageFile)}>
-                  <AvatarBadge
-                    as={IconButton}
-                    size="sm"
-                    rounded="full"
-                    top="-10px"
-                    colorScheme="red"
-                    aria-label="remove Image"
-                    icon={<SmallCloseIcon />}
-                  />
-                </Avatar>
+                <Avatar size="xl" src={URL.createObjectURL(prevImageFile)} />
               ) : (
-                <Avatar size="xl" src={user.picture}>
-                  <AvatarBadge
-                    as={IconButton}
-                    size="sm"
-                    rounded="full"
-                    top="-10px"
-                    colorScheme="red"
-                    aria-label="remove Image"
-                    icon={<SmallCloseIcon />}
-                  />
-                </Avatar>
+                <Avatar size="xl" src={user.picture} />
               )}
             </Center>
             <Center w="full">
