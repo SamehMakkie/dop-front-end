@@ -60,20 +60,25 @@ const BuyCard = ({ gameId, price }) => {
       router.push("/signin");
     } else {
       const { code, msg } = await addToCart(user.id, gameId);
-      if (code) {
+
+      if (code > 0) {
         dispatch(setNumOfItems(Number(numOfItemsInCart) + 1));
         toast({
           title: "Game added to cart",
           description: "Game has been successfully added to the cart.",
-          duration: 1500,
+          duration: 5000,
           isClosable: true,
           status: "success",
           position: "top-right",
         });
+        router.push(
+          "/search?categories=%5B%5D&genre_ids=&maxPrice=70&minAge=5"
+        );
       } else {
         toast({
           title: "Could not add",
           description: msg,
+          duration: 5000,
           status: "error",
           position: "top-right",
         });

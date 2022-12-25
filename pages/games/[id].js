@@ -104,7 +104,6 @@ const GamePage = () => {
         </Heading>
         <Carousel items={getCarouseImages()} />
         <VStack h={[5, 0]}></VStack>
-        {/* <Carousel cards={getCarouseImages()} /> */}
         <Stack
           w="100%"
           px={[8, 0]}
