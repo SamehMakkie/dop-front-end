@@ -72,7 +72,7 @@ const BuyCard = ({ gameId, price }) => {
           position: "top-right",
         });
         router.push(
-          "/search?categories=%5B%5D&genre_ids=&maxPrice=70&minAge=5"
+          "/search?categories=%5B%5D&genre_ids=&maxPrice=70&minAge=3"
         );
       } else {
         toast({
