@@ -26,7 +26,7 @@ const SearchElement = () => {
     searchTerm = searchString.replace(/[^a-zA-Z ]/g, "");
 
     if (searchTerm == "" || searchTerm == " ") {
-      router.push("/search?categories=%5B%5D&genre_ids=&maxPrice=70&minAge=5");
+      router.push("/search?categories=%5B%5D&genre_ids=&maxPrice=70&minAge=3");
     } else {
       searchTerm = searchTerm.trim();
       // Replace a space with a '-' character and convert the string to lower case
