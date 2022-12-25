@@ -4,6 +4,7 @@ import {
   Badge,
   Flex,
   Icon,
+  Image,
   Menu,
   MenuButton,
   MenuDivider,
@@ -11,9 +12,8 @@ import {
   MenuList,
   Show,
 } from "@chakra-ui/react";
-import Link from "next/link";
-import { useEffect } from "react";
-// import { useState } from "react";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import { BsGrid, BsGridFill } from "react-icons/bs";
 import { MdOutlineShoppingCart, MdShoppingCart } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
@@ -23,29 +23,32 @@ import { toggle } from "../../../redux/features/searchVisibilitySlice";
 import { clearUser } from "../../../redux/features/userSlice";
 import getCartItems from "../../../services/getCartItems";
 
-const LoggedInNav = () => {
+const LoggedInNav = ({ user }) => {
   const dispatch = useDispatch();
-  // const [numOfItemsInCart, setNumOfItemsInCart] = useState(0);
   const numOfItemsInCart = useSelector((state) => state.cartReducer.value);
-  const user = useSelector((state) => state.userReducer.value);
   const isSearchVisible = useSelector(
     (state) => state.searchVisibilityReducer.value
   );
-  
+  const [picture, setPicture] = useState(user.picture);
+  const router = useRouter();
 
-    useEffect(() => {
-      async function fetchCartItems() {
-        if (user) {
-          const {code, msg, data} = await getCartItems(user.id)
-          if (code >= 0) {
-            dispatch(setNumOfItems(data.length))
-            // setNumOfItemsInCart(data.length)
-          }
+  useEffect(() => {
+    async function fetchCartItems() {
+      if (user) {
+        const { code, msg, data } = await getCartItems(user.id);
+        if (code >= 0) {
+          dispatch(setNumOfItems(data.length));
         }
-  
       }
-      fetchCartItems()
-    }, [])
+    }
+    fetchCartItems();
+  }, []);
+
+  useEffect(() => {
+    console.log("RERENDERING");
+    console.log(user.picture);
+    setPicture(user.picture);
+  }, [user]);
 
   return (
     <>
@@ -86,7 +89,7 @@ const LoggedInNav = () => {
       </Flex>
       <Menu>
         <MenuButton>
-          <Avatar name={user.username} />
+          <Avatar name={user.username} src={`${picture}?${Date.now()}`} />
         </MenuButton>
         <MenuList>
           <MenuItem
@@ -96,9 +99,14 @@ const LoggedInNav = () => {
             _focus={{ bgColor: "white" }}>
             {user.username}
           </MenuItem>
-          <Link href={"/user/information"}>
-            <MenuItem>Profile</MenuItem>
-          </Link>
+
+          <MenuItem
+            onClick={() => {
+              router.push("/user/information");
+            }}>
+            Profile
+          </MenuItem>
+
           <MenuDivider />
           <MenuItem onClick={() => dispatch(clearUser())}>Log out</MenuItem>
         </MenuList>

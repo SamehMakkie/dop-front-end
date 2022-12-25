@@ -8,7 +8,7 @@ const Nav = () => {
 
   return (
     <HStack as={"nav"} spacing={[2, 2, 4]} justifyContent="end">
-      {user ? <LoggedInNav /> : <LoggedOutNav />}
+      {user ? <LoggedInNav user={user} /> : <LoggedOutNav />}
     </HStack>
   );
 };
