@@ -29,7 +29,7 @@ const isInArray = (arr, target) => target.every((v) => arr.includes(v));
 
 const Filter = ({ query }) => {
   const [maxPrice, setMaxPrice] = useState(70);
-  const [minAge, setMinAge] = useState(5);
+  const [minAge, setMinAge] = useState(3);
   const [selectedCategories, setSelectedCategories] = useState([]);
   const router = useRouter();
 
@@ -158,9 +158,9 @@ const Filter = ({ query }) => {
       <FilterStack>
         <Heading size="md">Age Restriction</Heading>
         <Slider
-          min={5}
+          min={3}
           max={21}
-          defaultValue={5}
+          defaultValue={3}
           aria-label="min-age"
           colorScheme={"teal"}
           onChange={(val) => setMinAge(val)}>
