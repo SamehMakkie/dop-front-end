@@ -21,18 +21,17 @@ import { useRouter } from "next/router";
 import { setUser } from "../../redux/features/userSlice";
 import axios from "axios";
 
-const defaultFormData = {
-  email: "",
-  username: "",
-  password: "",
-};
-
 export default function Profile() {
   const user = useSelector((state) => state.userReducer.value);
   const [prevImageFile, setPrevImageFile] = useState(null);
   const [imageFile, setImageFile] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
   const [disabled, setIsDisabled] = useState(false);
+  const defaultFormData = {
+    email: user.email,
+    username: user.username,
+    password: "",
+  };
   const [formData, setFormData] = useState(defaultFormData);
   const dispatch = useDispatch();
   const fileInput = useRef(null);
@@ -61,24 +60,22 @@ export default function Profile() {
     }
   };
 
+  const getImageFileFromURL = async (url) => {
+    const splitURL = url.split("/");
+    const fileName = splitURL[splitURL.length - 1];
+    // Make a request to the URL
+    const response = await await fetch(url, { mode: "no-cors" });
 
-const getImageFileFromURL = async (url) => {
-  const splitURL = url.split("/")
-  const fileName = splitURL[splitURL.length -1]
-  // Make a request to the URL
-  const response = await await fetch(url, { mode: "no-cors" });
+    // Retrieve the response as a Blob
+    const blob = await response.blob();
 
-  // Retrieve the response as a Blob
-  const blob = await response.blob();
+    // Create a file object using the Blob and the file name
+    const file = new File([blob], fileName, {
+      type: blob.type,
+    });
 
-  // Create a file object using the Blob and the file name
-  const file = new File([blob], fileName, {
-    type: blob.type,
-  });
-
-  return file;
-};
-
+    return file;
+  };
 
   const updateInfo = async () => {
     setIsDisabled(true);
