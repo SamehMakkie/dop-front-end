@@ -190,7 +190,6 @@ const GamePage = () => {
           gameId={gameId}
           comments={data?.game_comments}
           isPurchased={data?.download_visible}
-          showAddToCart={data?.add_to_cart_visible}
           setRefresh={setRefresh}
         />
       </VStack>
