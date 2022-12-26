@@ -22,6 +22,8 @@ import { setNumOfItems } from "../../../redux/features/cartSlice";
 import { toggle } from "../../../redux/features/searchVisibilitySlice";
 import { clearUser } from "../../../redux/features/userSlice";
 import getCartItems from "../../../services/getCartItems";
+import { AiFillHome, AiOutlineHome } from "react-icons/ai";
+import { RiInformationLine, RiInformationFill } from "react-icons/ri";
 
 const LoggedInNav = ({ user }) => {
   const dispatch = useDispatch();
@@ -60,6 +62,20 @@ const LoggedInNav = ({ user }) => {
             isSearchVisible ? <CloseIcon boxSize="14px" /> : <Search2Icon />
           }
           onClick={() => dispatch(toggle())}
+        />
+      </Show>
+      <Show above="lg">
+        <IconLink
+          href="/"
+          defaultIcon={AiOutlineHome}
+          hoverIcon={AiFillHome}
+          boxSize="20px"
+        />
+        <IconLink
+          href="/about"
+          defaultIcon={RiInformationLine}
+          hoverIcon={RiInformationFill}
+          boxSize="20px"
         />
       </Show>
       <IconLink
