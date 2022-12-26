@@ -67,15 +67,14 @@ const LoggedInNav = ({ user }) => {
       <Show above="lg">
         <IconLink
           href="/"
-          defaultIcon={AiOutlineHome}
-          hoverIcon={AiFillHome}
+          defaultIcon={<Icon as={AiOutlineHome} boxSize="20px" />}
+          hoverIcon={<Icon as={AiFillHome} boxSize="20px" />}
           boxSize="20px"
         />
         <IconLink
           href="/about"
-          defaultIcon={RiInformationLine}
-          hoverIcon={RiInformationFill}
-          boxSize="20px"
+          defaultIcon={<Icon as={RiInformationLine} boxSize="20px" />}
+          hoverIcon={<Icon as={RiInformationFill} boxSize="20px" />}
         />
       </Show>
       <IconLink
