@@ -19,6 +19,7 @@ import updateProfile from "../../services/updateProfile";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { setUser } from "../../redux/features/userSlice";
+import axios from "axios";
 
 const defaultFormData = {
   email: "",
@@ -60,14 +61,39 @@ export default function Profile() {
     }
   };
 
+
+const getImageFileFromURL = async (url) => {
+  const splitURL = url.split("/")
+  const fileName = splitURL[splitURL.length -1]
+  // Make a request to the URL
+  const response = await await fetch(url, { mode: "no-cors" });
+
+  // Retrieve the response as a Blob
+  const blob = await response.blob();
+
+  // Create a file object using the Blob and the file name
+  const file = new File([blob], fileName, {
+    type: blob.type,
+  });
+
+  return file;
+};
+
+
   const updateInfo = async () => {
     setIsDisabled(true);
+    let picture = imageFile;
+
+    if (!imageFile) {
+      picture = await getImageFileFromURL(user.picture);
+    }
+
     const { code, msg, data } = await updateProfile(
       user.id,
       formData.username,
       formData.email,
       formData.password,
-      imageFile
+      picture
     );
 
     if (code < 0) {
