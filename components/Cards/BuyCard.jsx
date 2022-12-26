@@ -13,8 +13,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import addToCart from "../../services/addToCard";
 import { setNumOfItems } from "../../redux/features/cartSlice";
+import { CheckIcon } from "@chakra-ui/icons";
 
-const BuyCard = ({ gameId, price }) => {
+const BuyCard = ({ gameId, price, showAddToCart }) => {
   const user = useSelector((state) => state.userReducer.value);
   const numOfItemsInCart = useSelector((state) => state.cartReducer.value);
   const [rating, setRating] = useState(0);
@@ -103,23 +104,38 @@ const BuyCard = ({ gameId, price }) => {
           <Icon
             key={index}
             boxSize={[6, 10]}
-            cursor="pointer"
+            // cursor="pointer"
             as={index < rating ? TiStarFullOutline : TiStarOutline}
             color={index < rating ? "orange.400" : "gra.400"}
           />
         ))}
         <Text fontSize={"sm"}>{rating}</Text>
       </HStack>
-      <Button
-        w="100%"
-        colorScheme={"teal"}
-        variant="outline"
-        onClick={handleAddToCart}>
-        Add to Cart
-      </Button>
-      <Button w="100%" colorScheme={"teal"} onClick={handleBuyNow}>
-        Buy now
-      </Button>
+      {showAddToCart ? (
+        <>
+          <Button
+            w="100%"
+            colorScheme={"teal"}
+            variant="outline"
+            onClick={handleAddToCart}>
+            Add to Cart
+          </Button>
+          <Button w="100%" colorScheme={"teal"} onClick={handleBuyNow}>
+            Buy now
+          </Button>
+        </>
+      ) : (
+        <Button
+          w="100%"
+          colorScheme="teal"
+          variant={"outline"}
+          leftIcon={<Icon as={CheckIcon} />}
+          onClick={() => {
+            router.push("/cart");
+          }}>
+          In Cart
+        </Button>
+      )}
     </VStack>
   );
 };
