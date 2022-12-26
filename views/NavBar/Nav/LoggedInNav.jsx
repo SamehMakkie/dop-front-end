@@ -45,8 +45,6 @@ const LoggedInNav = ({ user }) => {
   }, []);
 
   useEffect(() => {
-    console.log("RERENDERING");
-    console.log(user.picture);
     setPicture(user.picture);
   }, [user]);
 

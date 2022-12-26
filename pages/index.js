@@ -85,6 +85,7 @@ export default function Home({ highestRated, bestSellers, recently_added }) {
 
 export async function getServerSideProps() {
   const data = await fetchMainPageData();
+  
   return {
     props: {
       highestRated: data.highest_rateds,
