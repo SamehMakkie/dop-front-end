@@ -115,7 +115,7 @@ export default function Profile() {
         p={6}
         my={12}>
         <Heading lineHeight={1.1} fontSize={{ base: "2xl", sm: "3xl" }}>
-          Edit Username and Profile Picture
+          Edit Profile
         </Heading>
         <FormControl>
           <FormLabel>User Icon</FormLabel>
