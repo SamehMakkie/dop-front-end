@@ -111,6 +111,7 @@ const GamePageCarousel = ({ gameName, items, videoLink }) => {
                 alignItems="center"
                 justifyContent="center"
                 overflow={index != 0 && "scroll"}
+                overflowY={"hidden"}
                 variants={variants}
                 initial="enter"
                 animate="center"
