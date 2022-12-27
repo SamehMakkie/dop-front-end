@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import GameActionCard from "../../components/Cards/GameActionCard";
 import fetchGameInfo from "../../services/fetchGameInfo";
 import Carousel from "../../views/Carousel/Carousel";
+import GamePageCarousel from "../../views/Carousel/GamePageCarousel";
 import GameComments from "../../views/GameComments/GameComments";
 import NavigationWrapper from "../../views/NavigationWrapper/NavigationWrapper";
 
@@ -102,7 +103,11 @@ const GamePage = () => {
         <Heading w="100%" px={[8, 0]}>
           {data?.game_name}
         </Heading>
-        <Carousel items={getCarouseImages()} />
+        <GamePageCarousel
+          gameName={data?.game_name}
+          items={getCarouseImages()}
+          videoLink={data?.game_video_url}
+        />
         <VStack h={[5, 0]}></VStack>
         <Stack
           w="100%"
@@ -114,7 +119,9 @@ const GamePage = () => {
             w={["100%", "100%", "65%", "55%"]}
             maxW={{ md: "700px" }}
             lineHeight={"200%"}>
-            <Text w="100%" fontSize={"lg"} lineHeight="250%">{data?.game_description}</Text>
+            <Text w="100%" fontSize={"lg"} lineHeight="250%">
+              {data?.game_description}
+            </Text>
             <br />
             <Text w="100%" fontSize={"lg"} lineHeight="250%">
               <Text as="span" fontWeight={"bold"}>
