@@ -47,7 +47,10 @@ const getAnimation = (page, direction, i, prevPage) => {
 const GamePageCarousel = ({ gameName, items, videoLink }) => {
   const [[page, direction], setPage] = useState([0, 0]);
   const [prevPage, setPrevPage] = useState(0);
-  const temp = items ? [{ link: videoLink, src: gameName }].concat(items) : [];
+  let temp = items;
+  if (videoLink) {
+    temp = items ? [{ link: videoLink, src: gameName }].concat(items) : [];
+  }
   const [mergedItems, setMergedItems] = useState(temp);
   const router = useRouter();
 
@@ -78,9 +81,10 @@ const GamePageCarousel = ({ gameName, items, videoLink }) => {
   };
 
   useEffect(() => {
-    const temp = items
-      ? [{ link: videoLink, src: gameName }].concat(items)
-      : [];
+    let temp = items;
+    if (videoLink) {
+      temp = items ? [{ link: videoLink, src: gameName }].concat(items) : [];
+    }
     setMergedItems(temp);
   }, [items]);
 
@@ -116,7 +120,7 @@ const GamePageCarousel = ({ gameName, items, videoLink }) => {
                   opacity: { duration: 0.2 },
                 }}
                 display={index === page ? "block" : "none"}>
-                {index === 0 ? (
+                {index === 0 && videoLink ? (
                   <MotionAspectRation
                     w="100%"
                     maxH={["55vw", "50vw", "51vw", "50vw"]}
