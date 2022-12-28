@@ -11,31 +11,31 @@ const categories = [
   },
   {
     id: 2,
-    name: "Role-Playing",
-    link: "",
-    start: "#64E8DE",
-    end: "#8A64EB",
-  },
-  {
-    id: 3,
-    name: "Strategy",
-    link: "",
-    start: "#FFCF1B",
-    end: "#FF881B",
-  },
-  {
-    id: 4,
     name: "Adventure",
     link: "",
     start: "#FF9897",
     end: "#F650A0",
   },
   {
-    id: 5,
+    id: 3,
+    name: "Role-Playing",
+    link: "",
+    start: "#64E8DE",
+    end: "#8A64EB",
+  },
+  {
+    id: 4,
     name: "Simulation",
     link: "",
     start: "#FFA62E",
     end: "#EA4D2C",
+  },
+  {
+    id: 5,
+    name: "Strategy",
+    link: "",
+    start: "#FFCF1B",
+    end: "#FF881B",
   },
 ];
 
