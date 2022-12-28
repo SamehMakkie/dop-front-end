@@ -99,8 +99,14 @@ const GamePage = () => {
 
   return (
     <NavigationWrapper>
-      <VStack w={"100%"} px={[0, 10, 10, 20]} py={15} spacing={5}>
-        <Heading w="100%" px={[8, 0]}>
+      <VStack
+        w={"100%"}
+        px={[0, 10, 10, 20]}
+        maxW="1400px"
+        mx="auto"
+        py={15}
+        spacing={5}>
+        <Heading w="100%" fontSize={"5xl"} px={[8, 0]} mt={10} mb={5}>
           {data?.game_name}
         </Heading>
         <GamePageCarousel
@@ -119,36 +125,36 @@ const GamePage = () => {
             w={["100%", "100%", "65%", "55%"]}
             maxW={{ md: "700px" }}
             lineHeight={"200%"}>
-            <Text w="100%" fontSize={"lg"} lineHeight="250%">
+            <Text w="100%" fontSize={"larger"} lineHeight="250%">
               {data?.game_description}
             </Text>
             <br />
-            <Text w="100%" fontSize={"lg"} lineHeight="250%">
+            <Text w="100%" fontSize={"larger"} lineHeight="250%">
               <Text as="span" fontWeight={"bold"}>
                 Age Restriction:{" "}
               </Text>{" "}
               {data?.game_age_restriction + "+"}
             </Text>
-            <Text w="100%" fontSize={"lg"} lineHeight="250%">
+            <Text w="100%" fontSize={"larger"} lineHeight="250%">
               <Text as="span" fontWeight={"bold"}>
                 Developer:{" "}
               </Text>{" "}
               {data?.game_developer}
             </Text>
-            <Text w="100%" fontSize={"lg"} lineHeight="250%">
+            <Text w="100%" fontSize={"larger"} lineHeight="250%">
               <Text as="span" fontWeight={"bold"}>
                 Publisher:{" "}
               </Text>{" "}
               {data?.game_publisher}
             </Text>
-            <Text w="100%" fontSize={"lg"} lineHeight="250%">
+            <Text w="100%" fontSize={"larger"} lineHeight="250%">
               <Text as="span" fontWeight={"bold"}>
                 Release date:{" "}
               </Text>{" "}
               {data?.game_release_date}
             </Text>
 
-            <Text w="100%" fontSize={"lg"} lineHeight="250%">
+            <Text w="100%" fontSize={"larger"} lineHeight="250%">
               <Text as="span" fontWeight={"bold"}>
                 Categories:{" "}
               </Text>
@@ -160,28 +166,29 @@ const GamePage = () => {
                 return `${category}, `;
               })} */}
             </Text>
+            <br />
             <VStack w="100%" spacing={8} pt={5}>
-              <Heading w="100%" size={"lg"}>
+              <Heading w="100%" size={"xl"}>
                 System requirements
               </Heading>
               <Stack w="100%" direction={["column", "row"]} spacing={5}>
                 <VStack w="50%" alignItems={"start"}>
-                  <Text fontWeight={"bold"}>Minimum</Text>
-                  <Text>OS: {gameInfo.sysReq.min.os}</Text>
-                  <Text>CPU: {gameInfo.sysReq.min.cpu}</Text>
-                  <Text>GPU: {gameInfo.sysReq.min.gpu}</Text>
-                  <Text>RAM: {gameInfo.sysReq.min.ram}</Text>
-                  <Text>DirectX: {gameInfo.sysReq.min.directX}</Text>
-                  <Text>Storage: {gameInfo.sysReq.min.storage}</Text>
+                  <Text fontWeight={"bold"} fontSize="lg">Minimum</Text>
+                  <Text fontSize="lg">OS: {gameInfo.sysReq.min.os}</Text>
+                  <Text fontSize="lg">CPU: {gameInfo.sysReq.min.cpu}</Text>
+                  <Text fontSize="lg">GPU: {gameInfo.sysReq.min.gpu}</Text>
+                  <Text fontSize="lg">RAM: {gameInfo.sysReq.min.ram}</Text>
+                  <Text fontSize="lg">DirectX: {gameInfo.sysReq.min.directX}</Text>
+                  <Text fontSize="lg">Storage: {gameInfo.sysReq.min.storage}</Text>
                 </VStack>
                 <VStack w="50%" alignItems={"start"}>
-                  <Text fontWeight={"bold"}>Recommended</Text>
-                  <Text>OS: {gameInfo.sysReq.min.os}</Text>
-                  <Text>CPU: {gameInfo.sysReq.min.cpu}</Text>
-                  <Text>GPU: {gameInfo.sysReq.min.gpu}</Text>
-                  <Text>RAM: {gameInfo.sysReq.min.ram}</Text>
-                  <Text>DirectX: {gameInfo.sysReq.min.directX}</Text>
-                  <Text>Storage: {gameInfo.sysReq.min.storage}</Text>
+                  <Text fontWeight={"bold"} fontSize="lg">Recommended</Text>
+                  <Text fontSize="lg">OS: {gameInfo.sysReq.min.os}</Text>
+                  <Text fontSize="lg">CPU: {gameInfo.sysReq.min.cpu}</Text>
+                  <Text fontSize="lg">GPU: {gameInfo.sysReq.min.gpu}</Text>
+                  <Text fontSize="lg">RAM: {gameInfo.sysReq.min.ram}</Text>
+                  <Text fontSize="lg">DirectX: {gameInfo.sysReq.min.directX}</Text>
+                  <Text fontSize="lg">Storage: {gameInfo.sysReq.min.storage}</Text>
                 </VStack>
               </Stack>
             </VStack>
@@ -193,6 +200,8 @@ const GamePage = () => {
             id={gameId}
           />
         </Stack>
+        <br />
+        <br />
         <GameComments
           gameId={gameId}
           comments={data?.game_comments}

@@ -104,7 +104,7 @@ const LoggedInNav = ({ user }) => {
         <MenuButton>
           <Avatar name={user.username} src={`${picture}?${Date.now()}`} />
         </MenuButton>
-        <MenuList>
+        <MenuList >
           <MenuItem
             cursor={"default"}
             fontWeight="bold"

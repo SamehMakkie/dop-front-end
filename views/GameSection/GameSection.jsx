@@ -50,7 +50,6 @@ const GamesSection = ({ i, sectionTitle, fetchFunction }) => {
           cursor={"pointer"}
         />
         <Box
-          id={`slider-${i}`}
           w="100%"
           h="100%"
           overflowX={"scroll"}

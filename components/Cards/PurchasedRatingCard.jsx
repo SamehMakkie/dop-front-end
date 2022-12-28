@@ -54,7 +54,7 @@ const PurchasedRatingCard = ({ gameId, databaseRating }) => {
       borderWidth="1px"
       alignItems="center"
       justifyContent={"center"}>
-      <Heading fontSize={["2xl", "3xl"]}>See Rating</Heading>
+      <Heading fontSize={["4xl", "4xl"]}>See Rating</Heading>
       <HStack>
         {array.map((star, index) => (
           <Icon

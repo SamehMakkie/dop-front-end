@@ -97,7 +97,7 @@ const BuyCard = ({ gameId, price }) => {
       borderWidth="1px"
       alignItems="center"
       justifyContent={"center"}>
-      <Heading fontSize={["2xl", "3xl"]}>{price}</Heading>
+      <Heading fontSize={["4xl", "4xl"]}>{price}</Heading>
       <HStack>
         {array.map((star, index) => (
           <Icon
