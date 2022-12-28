@@ -92,13 +92,18 @@ const Library = () => {
           w="100%"
           px={[5, 10, 10, 32, 36]}
           py={20}
+          minH="60vh"
           spacing={5}
-          justifyContent="center">
+          justifyContent="start">
           <Heading w="100%" textAlign={{ base: "center", md: "start" }}>
             Library
           </Heading>
+          {games.length == 0 && (
+            <Text w="100%" fontSize={"lg"} textAlign={{ base: "center", md: "start" }}>
+              You don{"'"}t have any games yet
+            </Text>
+          )}
           <SimpleGrid w="100%" columns={[1, 2, 3, 4]}>
-            {games.length == 0 && <Text>You don{"'"}t have any games yet</Text>}
             {games.map((game, i) => (
               <GridItem key={i} w="100%" colSpan={1}>
                 <Hide above="md">
