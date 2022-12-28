@@ -6,7 +6,7 @@ const AboutTextSection = ({ title, children }) => {
       <Heading as="h2" w="100%">
         {title}
       </Heading>
-      <Text maxW={"800px"} lineHeight="200%">
+      <Text maxW={"800px"} lineHeight="250%" fontSize={"lg"}>
         {children}
       </Text>
     </VStack>
