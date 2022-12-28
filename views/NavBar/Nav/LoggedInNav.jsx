@@ -2,6 +2,7 @@ import { CloseIcon, Search2Icon } from "@chakra-ui/icons";
 import {
   Avatar,
   Badge,
+  Button,
   Flex,
   Icon,
   Image,
@@ -12,6 +13,7 @@ import {
   MenuList,
   Show,
 } from "@chakra-ui/react";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { BsGrid, BsGridFill } from "react-icons/bs";
@@ -22,7 +24,6 @@ import { setNumOfItems } from "../../../redux/features/cartSlice";
 import { toggle } from "../../../redux/features/searchVisibilitySlice";
 import { clearUser } from "../../../redux/features/userSlice";
 import getCartItems from "../../../services/getCartItems";
-
 
 const LoggedInNav = ({ user }) => {
   const dispatch = useDispatch();
@@ -63,12 +64,20 @@ const LoggedInNav = ({ user }) => {
           onClick={() => dispatch(toggle())}
         />
       </Show>
-      
-      <IconLink
-        href={"/library"}
-        defaultIcon={<Icon as={BsGrid} boxSize="20px" />}
-        hoverIcon={<Icon as={BsGridFill} boxSize="20px" />}
-      />
+      <Show above="md">
+        <Link href={"/library"}>
+          <Button leftIcon={<Icon as={BsGrid} boxSize="20px" />}>
+            Library
+          </Button>
+        </Link>
+      </Show>
+      <Show below="md">
+        <IconLink
+          href={"/library"}
+          defaultIcon={<Icon as={BsGrid} boxSize="20px" />}
+          hoverIcon={<Icon as={BsGridFill} boxSize="20px" />}
+        />
+      </Show>
       <Flex position={"relative"}>
         <IconLink
           href={"/cart"}
@@ -91,7 +100,7 @@ const LoggedInNav = ({ user }) => {
         <MenuButton>
           <Avatar name={user.username} src={`${picture}?${Date.now()}`} />
         </MenuButton>
-        <MenuList >
+        <MenuList>
           <MenuItem
             cursor={"default"}
             fontWeight="bold"
