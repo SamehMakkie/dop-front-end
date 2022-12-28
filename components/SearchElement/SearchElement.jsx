@@ -43,7 +43,6 @@ const SearchElement = () => {
       <Input
         size={"lg"}
         variant="filled"
-        fontSize={"md"}
         onChange={handleChange}
         onKeyDown={(e) => {
           e.key == "Enter" && handleSearch();
