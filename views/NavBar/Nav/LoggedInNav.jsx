@@ -22,8 +22,7 @@ import { setNumOfItems } from "../../../redux/features/cartSlice";
 import { toggle } from "../../../redux/features/searchVisibilitySlice";
 import { clearUser } from "../../../redux/features/userSlice";
 import getCartItems from "../../../services/getCartItems";
-import { AiFillHome, AiOutlineHome } from "react-icons/ai";
-import { RiInformationLine, RiInformationFill } from "react-icons/ri";
+
 
 const LoggedInNav = ({ user }) => {
   const dispatch = useDispatch();
@@ -64,19 +63,7 @@ const LoggedInNav = ({ user }) => {
           onClick={() => dispatch(toggle())}
         />
       </Show>
-      <Show above="lg">
-        <IconLink
-          href="/"
-          defaultIcon={<Icon as={AiOutlineHome} boxSize="20px" />}
-          hoverIcon={<Icon as={AiFillHome} boxSize="20px" />}
-          boxSize="20px"
-        />
-        <IconLink
-          href="/about"
-          defaultIcon={<Icon as={RiInformationLine} boxSize="20px" />}
-          hoverIcon={<Icon as={RiInformationFill} boxSize="20px" />}
-        />
-      </Show>
+      
       <IconLink
         href={"/library"}
         defaultIcon={<Icon as={BsGrid} boxSize="20px" />}
