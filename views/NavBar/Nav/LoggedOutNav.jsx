@@ -1,20 +1,28 @@
+import { CloseIcon, Search2Icon } from "@chakra-ui/icons";
 import { Button, Icon, Show } from "@chakra-ui/react";
 import Link from "next/link";
+import { useDispatch, useSelector } from "react-redux";
+import IconLink from "../../../components/IconLink/IconLink";
+import { toggle } from "../../../redux/features/searchVisibilitySlice";
 
 const LoggedOutNav = () => {
+  const dispatch = useDispatch();
+  const isSearchVisible = useSelector(
+    (state) => state.searchVisibilityReducer.value
+  );
   return (
     <>
-      <Show above="lg">
-        <Link href="/">
-          <Button borderRadius={"2xl"} variant="ghost">
-            Home
-          </Button>
-        </Link>
-        <Link href="/about">
-          <Button borderRadius={"2xl"} variant="ghost">
-            About
-          </Button>
-        </Link>
+      <Show below="md">
+        <IconLink
+          href={""}
+          defaultIcon={
+            isSearchVisible ? <CloseIcon boxSize="14px" /> : <Search2Icon />
+          }
+          hoverIcon={
+            isSearchVisible ? <CloseIcon boxSize="14px" /> : <Search2Icon />
+          }
+          onClick={() => dispatch(toggle())}
+        />
       </Show>
       <Link href={"/signin"}>
         <Button borderRadius={"2xl"} variant="ghost">

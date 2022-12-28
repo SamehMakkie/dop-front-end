@@ -1,6 +1,8 @@
 import {
+  Button,
   Divider,
   GridItem,
+  HStack,
   Image,
   Show,
   SimpleGrid,
@@ -44,13 +46,25 @@ const NavBar = () => {
           {isSearchVisible ? (
             <SearchElement />
           ) : (
-            <Link href="/">
-              <Image
-                width="100px"
-                src="/DoPa128.png"
-                alt="DoP logo"
-              />
-            </Link>
+            <HStack w="100%" spacing={3}>
+              <Link href="/">
+                <Image width="100px" src="/DoPa128.png" alt="DoP logo" />
+              </Link>
+              <Show above="lg">
+                <HStack spacing={3}>
+                  <Link href="/">
+                    <Button borderRadius={"2xl"} variant="ghost">
+                      Home
+                    </Button>
+                  </Link>
+                  <Link href="/about">
+                    <Button borderRadius={"2xl"} variant="ghost">
+                      About
+                    </Button>
+                  </Link>
+                </HStack>
+              </Show>
+            </HStack>
           )}
         </GridItem>
         <Show above="md">
