@@ -80,7 +80,7 @@ const LibraryGameCard = ({ link, src, name, rating }) => {
               alt={name + "cover image"}
               borderRadius={"2xl"}
             />
-            <Heading as="h3" size={"lg"} fontWeight="normal">
+            <Heading as="h3" size={"lg"} fontWeight="normal" noOfLines={1}>
               {name}
             </Heading>
             <HStack w="100%" spacing={[3, 2]}>

@@ -31,7 +31,16 @@ const SearchElement = () => {
       searchTerm = searchTerm.trim();
       // Replace a space with a '-' character and convert the string to lower case
       searchTerm = searchTerm.replace(/\s+/g, "-").toLowerCase();
-      router.push({pathname: "/search/", query: {slang: searchTerm, page: 1, genre_ids: ""}});
+      router.push({
+        pathname: "/search/",
+        query: {
+          slang: searchTerm,
+          page: 1,
+          genre_ids: "",
+          maxPrice: 70,
+          minAge: 3,
+        },
+      });
     }
   };
 
