@@ -24,82 +24,101 @@ import { setUser } from "../redux/features/userSlice";
 import checkEmail from "../services/checkEmail";
 import checkUsername from "../services/checkUsername";
 import createAccount from "../services/createAccount";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
-// Define an array of months
-const months = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
-
-// Define an array of years
-const currentYear = new Date().getFullYear();
-const years = Array.from(
-  { length: currentYear - 1900 + 1 },
-  (_, i) => i + 1900
-);
+const schema = yup
+  .object({
+    username: yup
+      .string()
+      .required("Username is required")
+      .min(3, "Username must be at least 3 characters long")
+      .max(255, "Username must be less than 255 characters long")
+      .matches(
+        /^[a-zA-Z0-9_]*$/,
+        "Username can only contain alphanumeric characters and underscores"
+      ),
+    email: yup
+      .string()
+      .required("Email is required")
+      .email("Please enter a valid email address"),
+    password: yup
+      .string()
+      .required("Password is required")
+      .min(8, "Password must be at least 8 characters long")
+      .max(255, "Password must be less than 255 characters long")
+      .matches(
+        /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d]{8,}$/,
+        "Password must contain at least one uppercase letter, one lowercase letter, and one number"
+      ),
+    confirmPass: yup
+      .string()
+      .oneOf([yup.ref("password"), null], "Passwords do not match")
+      .required("Confirm password is required"),
+  })
+  .required();
 
 const Signup = () => {
-  const [formInfo, setFormInfo] = useState({
-    username: "",
-    email: "",
-    password: "",
-    confirmPass: "",
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
   });
-  const [res, setRes] = useState({
-    username: { code: undefined, msg: undefined },
-    email: { code: undefined, msg: undefined },
-    signup: { code: undefined, msg: undefined },
-  });
-  const [arePasswordsSame, setArePasswordsSame] = useState(true);
   const [isPasswordShown, setIsPasswordShown] = useState(false);
   const user = useSelector((state) => state.userReducer.value);
   const dispatch = useDispatch();
-  const toast = useToast()
+  const toast = useToast();
   const router = useRouter();
 
-  const handleInfoChange = (e) => {
-    setFormInfo((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
-  };
+  const handleSignUp = async (data) => {
+    const { username, email, password } = data;
+    const usernameRes = await checkUsername(username);
 
-  const handleSignUp = async () => {
-    const usernameRes = await checkUsername(formInfo.username);
-    const emailRes = await checkEmail(formInfo.email);
-    setRes({
-      username: usernameRes,
-      email: emailRes,
-      signup: { code: undefined, msg: undefined },
-    });
+    if (usernameRes.code < 0) {
+      toast({
+        title: "Username is not available",
+        description: "The Username is already in use, try another username",
+        status: "error",
+        position: "top-right",
+      });
+    }
 
-    
-    const birthDate = "1990-01-01";
-    if (formInfo.password == formInfo.confirmPass) {
-      setArePasswordsSame(true);
+    const emailRes = await checkEmail(email);
+
+    if (emailRes.code < 0) {
+      toast({
+        title: "Email is not available",
+        description: "The Email is already in use",
+        status: "error",
+        position: "top-right",
+      });
+    }
+
+    if (usernameRes.code >= 0 && emailRes.code >= 0) {
+      const birthDate = "1990-01-01";
       const user = {
-        ...formInfo,
+        email,
+        user_name: username,
+        password,
         birthDate: birthDate,
       };
       const createdUser = await createAccount(user);
       if (createdUser.code >= 0) {
-        dispatch(setUser({id: createdUser.data.Id, email: createdUser.data.email, username: createdUser.data.user_name, picture: createdUser.data.picture}));
+        dispatch(
+          setUser({
+            id: createdUser.data.Id,
+            email: createdUser.data.email,
+            username: createdUser.data.user_name,
+            picture: createdUser.data.picture,
+          })
+        );
         router.push("/");
       } else {
-        toast({title: "Error", description: createdUser.msg})
+        toast({ title: "Error", description: createdUser.msg });
       }
-    } else {
-      setArePasswordsSame(false);
     }
   };
 
@@ -117,117 +136,124 @@ const Signup = () => {
       alignItems="center"
       bgColor={"gray.50"}>
       {!user && (
-        <VStack
+        <FormControl
+          as={"form"}
+          // display={"flex"}
+          noValidate
           p={10}
           w="100%"
           my={20}
           maxW={"md"}
-          spacing={8}
           alignItems="center"
           bgColor={"white"}
           borderRadius="2xl"
-          boxShadow="lg">
-          <Link href="/">
-            <Image width="120px" src="/DoPa128.png" alt="DoP logo" />
-          </Link>
-          <Heading as={"h1"} fontWeight="normal" size={"lg"}>
-            Register
-          </Heading>
-          <FormControl isRequired w="100%" isInvalid={res.username.code < 0}>
-            <FormLabel>Username</FormLabel>
-            <Input
-              w="100%"
-              type={"text"}
-              name="username"
-              value={formInfo.username}
-              onChange={handleInfoChange}
-              placeholder="yourusername"
-            />
-            {res.username.code < 0 && (
-              <FormErrorMessage>{res.username.msg}</FormErrorMessage>
-            )}
-          </FormControl>
-          <FormControl isRequired w="100%" isInvalid={res.email.code < 0}>
-            <FormLabel>Email</FormLabel>
-            <Input
-              w="100%"
-              type={"email"}
-              name="email"
-              value={formInfo.email}
-              onChange={handleInfoChange}
-              placeholder="john-doe@example.com"
-            />
-            {res.email.code < 0 ? (
-              <FormErrorMessage>{res.email.msg}</FormErrorMessage>
-            ) : (
-              <FormHelperText>We will never share your email</FormHelperText>
-            )}
-          </FormControl>
-          <FormControl isRequired w="100%" isInvalid={!arePasswordsSame}>
-            <FormLabel>Password</FormLabel>
-            <InputGroup w="100%">
-              <Input
-                w="100%"
-                type={isPasswordShown ? "text" : "password"}
-                name="password"
-                value={formInfo.password}
-                onChange={handleInfoChange}
-                placeholder="**************"
-              />
-              <InputRightElement h={"full"}>
-                <Button
-                  variant={"ghost"}
-                  onClick={() =>
-                    setIsPasswordShown((isPasswordShown) => !isPasswordShown)
-                  }>
-                  {isPasswordShown ? <ViewIcon /> : <ViewOffIcon />}
-                </Button>
-              </InputRightElement>
-            </InputGroup>
-            {!arePasswordsSame ? (
-              <FormErrorMessage>Passwords are not the same</FormErrorMessage>
-            ) : (
-              <FormHelperText>
-                Don{"'"}t share your password with anyone 🤫
-              </FormHelperText>
-            )}
-          </FormControl>
-          <FormControl isRequired isInvalid={!arePasswordsSame}>
-            <FormLabel>Confirm Password</FormLabel>
-            <InputGroup w="100%">
-              <Input
-                w="100%"
-                type={isPasswordShown ? "text" : "password"}
-                name="confirmPass"
-                value={formInfo.confirmPass}
-                onChange={handleInfoChange}
-                placeholder="**************"
-              />
-              <InputRightElement h={"full"}>
-                <Button
-                  variant={"ghost"}
-                  onClick={() =>
-                    setIsPasswordShown((isPasswordShown) => !isPasswordShown)
-                  }>
-                  {isPasswordShown ? <ViewIcon /> : <ViewOffIcon />}
-                </Button>
-              </InputRightElement>
-            </InputGroup>
-            {arePasswordsSame && (
-              <FormHelperText>Sorry, Just to double check</FormHelperText>
-            )}
-          </FormControl>
-          
-          <Button w="100%" colorScheme={"teal"} onClick={handleSignUp}>
-            Register
-          </Button>
-          <Text>
-            Already have an account?{" "}
-            <Link href="/signin" color="blue.400">
-              Sign in
+          boxShadow="lg"
+          onSubmit={handleSubmit(handleSignUp)}>
+          <VStack w="100%" spacing={8}>
+            <Link href="/">
+              <Image width="120px" src="/DoPa128.png" alt="DoP logo" />
             </Link>
-          </Text>
-        </VStack>
+            <Heading as={"h1"} fontWeight="normal" size={"lg"}>
+              Register
+            </Heading>
+            <FormControl
+              isRequired
+              w="100%"
+              isInvalid={Boolean(errors.username)}>
+              <FormLabel>Username</FormLabel>
+              <Input
+                w="100%"
+                type="text"
+                placeholder="yourusername"
+                {...register("username")}
+              />
+              {Boolean(errors.username) && (
+                <FormErrorMessage>{errors.username?.message}</FormErrorMessage>
+              )}
+            </FormControl>
+            <FormControl isRequired w="100%" isInvalid={Boolean(errors.email)}>
+              <FormLabel>Email</FormLabel>
+              <Input
+                w="100%"
+                type="email"
+                placeholder="john-doe@example.com"
+                {...register("email")}
+              />
+              {Boolean(errors.email) ? (
+                <FormErrorMessage>{errors.email?.message}</FormErrorMessage>
+              ) : (
+                <FormHelperText>We will never share your email</FormHelperText>
+              )}
+            </FormControl>
+            <FormControl
+              isRequired
+              w="100%"
+              isInvalid={Boolean(errors.password)}>
+              <FormLabel>Password</FormLabel>
+              <InputGroup w="100%">
+                <Input
+                  w="100%"
+                  type={isPasswordShown ? "text" : "password"}
+                  placeholder="**************"
+                  {...register("password")}
+                />
+                <InputRightElement h={"full"}>
+                  <Button
+                    variant={"ghost"}
+                    onClick={() =>
+                      setIsPasswordShown((isPasswordShown) => !isPasswordShown)
+                    }>
+                    {isPasswordShown ? <ViewIcon /> : <ViewOffIcon />}
+                  </Button>
+                </InputRightElement>
+              </InputGroup>
+              {Boolean(errors.password) ? (
+                <FormErrorMessage>{errors.password?.message}</FormErrorMessage>
+              ) : (
+                <FormHelperText>
+                  Don{"'"}t share your password with anyone 🤫
+                </FormHelperText>
+              )}
+            </FormControl>
+            <FormControl isRequired isInvalid={Boolean(errors.confirmPass)}>
+              <FormLabel>Confirm Password</FormLabel>
+              <InputGroup w="100%">
+                <Input
+                  w="100%"
+                  type={isPasswordShown ? "text" : "password"}
+                  placeholder="**************"
+                  {...register("confirmPass")}
+                />
+                <InputRightElement h={"full"}>
+                  <Button
+                    variant={"ghost"}
+                    onClick={() =>
+                      setIsPasswordShown((isPasswordShown) => !isPasswordShown)
+                    }>
+                    {isPasswordShown ? <ViewIcon /> : <ViewOffIcon />}
+                  </Button>
+                </InputRightElement>
+              </InputGroup>
+              {Boolean(errors.confirmPass) ? (
+                <FormErrorMessage>
+                  {errors.confirmPass?.message}
+                </FormErrorMessage>
+              ) : (
+                <FormHelperText>Sorry, Just to double check</FormHelperText>
+              )}
+            </FormControl>
+
+            <Button w="100%" type="submit" colorScheme={"teal"}>
+              Register
+            </Button>
+            <Text>
+              Already have an account?{" "}
+              <Link href="/signin" color="blue.400">
+                Sign in
+              </Link>
+            </Text>
+          </VStack>
+        </FormControl>
       )}
     </Flex>
   );
