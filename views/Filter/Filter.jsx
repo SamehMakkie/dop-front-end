@@ -97,6 +97,14 @@ const Filter = ({ query }) => {
     AsyncSet();
   }, [query]);
 
+  useEffect(() => {
+    if (router.query.slang) {
+      // Reset the filter component state when the slang value changes
+      setMaxPrice(70);
+      setMinAge(3);
+    }
+  }, [router.query.slang]);
+
   if (!query) {
     return;
   }
@@ -116,7 +124,7 @@ const Filter = ({ query }) => {
         <Slider
           min={0}
           max={70}
-          defaultValue={70}
+          value={maxPrice} // Use the value prop to control the current value of the slider
           aria-label="max-price"
           colorScheme={"teal"}
           onChange={(val) => setMaxPrice(val)}>
@@ -160,7 +168,7 @@ const Filter = ({ query }) => {
         <Slider
           min={3}
           max={21}
-          defaultValue={3}
+          value={minAge} // Use the value prop to control the current value of the slider
           aria-label="min-age"
           colorScheme={"teal"}
           onChange={(val) => setMinAge(val)}>
