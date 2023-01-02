@@ -152,7 +152,6 @@ const Signup = () => {
       {!user && (
         <FormControl
           as={"form"}
-          // display={"flex"}
           noValidate
           p={10}
           w="100%"
