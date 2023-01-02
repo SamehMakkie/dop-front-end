@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const apiLink = "https://dop1.000webhostapp.com/";
+const apiLink = "http://194.27.78.83/dop/";
 const deleteCartLink = apiLink + "deletecart.php";
 
 async function deleteCartItem(userId, gameId) {

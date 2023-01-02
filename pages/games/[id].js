@@ -58,7 +58,7 @@ const gameInfo = {
   },
 };
 
-const apiLink = "https://dop1.000webhostapp.com/";
+const apiLink = "http://194.27.78.83/dop/";
 
 const GamePage = () => {
   const user = useSelector((state) => state.userReducer.value);
