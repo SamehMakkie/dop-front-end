@@ -14,7 +14,7 @@ import { useRouter } from "next/router";
 import addToCart from "../../services/addToCard";
 import { setNumOfItems } from "../../redux/features/cartSlice";
 
-const BuyCard = ({ gameId, price, isAddToCartVisible }) => {
+const BuyCard = ({ gameId, price, isAddToCartVisible, databaseRating }) => {
   const user = useSelector((state) => state.userReducer.value);
   const numOfItemsInCart = useSelector((state) => state.cartReducer.value);
   const [rating, setRating] = useState(0);
@@ -115,7 +115,7 @@ const BuyCard = ({ gameId, price, isAddToCartVisible }) => {
         <>
           <HStack>
             <Icon as={TiStarFullOutline} color="orange.400" boxSize={8} />
-            <Text fontSize={"lg"}>{rating}/5</Text>
+            <Text fontSize={"lg"}>{databaseRating}/5</Text>
           </HStack>
           <Heading fontSize={["4xl", "4xl"]}>{price}</Heading>
           <Button
