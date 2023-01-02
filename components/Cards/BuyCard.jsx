@@ -89,27 +89,32 @@ const BuyCard = ({ gameId, price }) => {
   return (
     <VStack
       p={10}
+      w={"sm"}
       mx="auto"
-      maxW="360px"
+      maxW="100%"
       maxH="350px"
       spacing={5}
       rounded={"2xl"}
       borderWidth="1px"
       alignItems="center"
       justifyContent={"center"}>
-      <Heading fontSize={["4xl", "4xl"]}>{price}</Heading>
       <HStack>
+        <Icon as={TiStarFullOutline} color="orange.400" boxSize={8} />
+        <Text fontSize={"lg"}>{rating}/5</Text>
+      </HStack>
+      <Heading fontSize={["4xl", "4xl"]}>{price}</Heading>
+      {/* <HStack>
         {array.map((star, index) => (
           <Icon
             key={index}
             boxSize={[6, 10]}
             cursor="pointer"
             as={index < rating ? TiStarFullOutline : TiStarOutline}
-            color={index < rating ? "orange.400" : "gra.400"}
+            color={index < rating ? "orange.400" : "secondary"}
           />
         ))}
         <Text fontSize={"sm"}>{rating}</Text>
-      </HStack>
+      </HStack> */}
       <Button
         w="100%"
         colorScheme={"teal"}
