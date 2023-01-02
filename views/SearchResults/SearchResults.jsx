@@ -138,7 +138,7 @@ const SearchResults = ({ data }) => {
             <GameCard
               key={i}
               link={`/games/${game.game_id}`}
-              src={"http://194.27.78.83/dop/" + game.game_picture}
+              src={"http://msevince.com/Dop/" + game.game_picture}
               name={game.game_name}
               rating={game.game_rating}
               price={"$ " + game.game_price}

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const apiLink = "http://194.27.78.83/dop/";
+const apiLink = "http://msevince.com/Dop/";
 const buyGameLink = apiLink + "buygame.php";
 
 async function pay(userId, gameIds, taxPercentage, totalPrice, fullName) {

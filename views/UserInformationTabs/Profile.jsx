@@ -110,7 +110,7 @@ export default function Profile() {
           id: data.Id,
           email: data.email,
           username: data.user_name,
-          picture: "http://194.27.78.83/dop/" + data.picture,
+          picture: "http://msevince.com/Dop/" + data.picture,
         })
       );
       toast({
