@@ -3,7 +3,7 @@ import axios from "axios";
 async function filterSearch(maxPrice, minAge, genres_ids) {
   const minPrice = 0;
   const maxAge = 21;
-  const apiLink = "http://194.27.78.83/dop/";
+  const apiLink = "https://dop1.000webhostapp.com/";
   const filterLink = apiLink + "filtretedgames.php";
 
   const reqData = {
