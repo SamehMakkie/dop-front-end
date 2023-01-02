@@ -87,7 +87,7 @@ const Carousel = ({ items }) => {
       tabIndex={0}
       onKeyDown={handleKeyDown}>
       <Flex align="center" justify="center" w="100%">
-        <AnimatePresence  custom={direction}>
+        <AnimatePresence custom={direction}>
           {items?.map((item, index) => (
             <MotionFlex
               key={index}
@@ -164,8 +164,10 @@ const Carousel = ({ items }) => {
               w="8px"
               h="8px"
               mx="2px"
-              bg={index === page ? "primary" : "gray.300"}
+              cursor={"pointer"}
               borderRadius="full"
+              bg={index === page ? "primary" : "gray.300"}
+              onClick={() => setPage([index, 0])}
             />
           ))}
         </Flex>
