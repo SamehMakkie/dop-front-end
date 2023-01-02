@@ -63,6 +63,7 @@ const Signup = () => {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
@@ -72,6 +73,10 @@ const Signup = () => {
   const dispatch = useDispatch();
   const toast = useToast();
   const router = useRouter();
+
+  const data = watch();
+  const isSignUpDisabled =
+    !data.username || !data.email || !data.password || !data.confirmPass;
 
   const handleSignUp = async (data) => {
     const { username, email, password } = data;
@@ -83,7 +88,7 @@ const Signup = () => {
         description: "The Username is already in use, try another username",
         status: "error",
         position: "top-right",
-        isClosable: true
+        isClosable: true,
       });
     }
 
@@ -95,7 +100,7 @@ const Signup = () => {
         description: "The Email is already in use",
         status: "error",
         position: "top-right",
-        isClosable: true
+        isClosable: true,
       });
     }
 
@@ -120,7 +125,13 @@ const Signup = () => {
         );
         router.push("/");
       } else {
-        toast({ title: "Error", description: createdUser.msg, status: "error", position: "top-right", isClosable: true });
+        toast({
+          title: "Error",
+          description: createdUser.msg,
+          status: "error",
+          position: "top-right",
+          isClosable: true,
+        });
       }
     }
   };
@@ -246,7 +257,11 @@ const Signup = () => {
               )}
             </FormControl>
 
-            <Button w="100%" type="submit" colorScheme={"teal"}>
+            <Button
+              w="100%"
+              type="submit"
+              colorScheme={"teal"}
+              isDisabled={isSignUpDisabled}>
               Register
             </Button>
             <Text>
