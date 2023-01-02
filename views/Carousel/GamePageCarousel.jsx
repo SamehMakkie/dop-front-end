@@ -124,7 +124,6 @@ const GamePageCarousel = ({ gameName, items, videoLink }) => {
                 {index === 0 && videoLink ? (
                   <MotionAspectRation
                     w="100%"
-                    // maxH={["55vw", "50vw", "51vw", "41vw"]}
                     ratio={16/9}
                     animate={{
                       x: getAnimation(page, direction, index, prevPage),
@@ -206,8 +205,10 @@ const GamePageCarousel = ({ gameName, items, videoLink }) => {
               w="8px"
               h="8px"
               mx="2px"
-              bg={index === page ? "primary" : "gray.300"}
               borderRadius="full"
+              cursor="pointer"
+              bg={index === page ? "primary" : "gray.300"}
+              onClick={() => setPage([index, 0])}
             />
           ))}
         </Flex>
