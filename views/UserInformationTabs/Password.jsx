@@ -11,7 +11,6 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
-import { useState } from "react";
 import { useSelector } from "react-redux";
 import changePassword from "../../services/changePassword";
 import { useForm } from "react-hook-form";

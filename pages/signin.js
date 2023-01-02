@@ -48,7 +48,7 @@ const Signin = () => {
             id: res.data.Id,
             email: res.data.email,
             username: res.data.user_name,
-            picture: "http://msevince.com/Dop/" + res.data.picture,
+            picture: "http://194.27.78.83/dop/" + res.data.picture,
           })
         );
         router.push("/");
