@@ -124,8 +124,8 @@ const GamePageCarousel = ({ gameName, items, videoLink }) => {
                 {index === 0 && videoLink ? (
                   <MotionAspectRation
                     w="100%"
-                    maxH={["55vw", "50vw", "51vw", "50vw"]}
-                    ratio={1}
+                    // maxH={["55vw", "50vw", "51vw", "41vw"]}
+                    ratio={16/9}
                     animate={{
                       x: getAnimation(page, direction, index, prevPage),
                     }}
