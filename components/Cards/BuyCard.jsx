@@ -1,4 +1,4 @@
-import { TiStarFullOutline, TiStarOutline } from "react-icons/ti";
+import { TiStarFullOutline } from "react-icons/ti";
 import {
   Button,
   Heading,
@@ -14,7 +14,7 @@ import { useRouter } from "next/router";
 import addToCart from "../../services/addToCard";
 import { setNumOfItems } from "../../redux/features/cartSlice";
 
-const BuyCard = ({ gameId, price }) => {
+const BuyCard = ({ gameId, price, isAddToCartVisible }) => {
   const user = useSelector((state) => state.userReducer.value);
   const numOfItemsInCart = useSelector((state) => state.cartReducer.value);
   const [rating, setRating] = useState(0);
@@ -98,33 +98,38 @@ const BuyCard = ({ gameId, price }) => {
       borderWidth="1px"
       alignItems="center"
       justifyContent={"center"}>
-      <HStack>
-        <Icon as={TiStarFullOutline} color="orange.400" boxSize={8} />
-        <Text fontSize={"lg"}>{rating}/5</Text>
-      </HStack>
-      <Heading fontSize={["4xl", "4xl"]}>{price}</Heading>
-      {/* <HStack>
-        {array.map((star, index) => (
-          <Icon
-            key={index}
-            boxSize={[6, 10]}
-            cursor="pointer"
-            as={index < rating ? TiStarFullOutline : TiStarOutline}
-            color={index < rating ? "orange.400" : "secondary"}
-          />
-        ))}
-        <Text fontSize={"sm"}>{rating}</Text>
-      </HStack> */}
-      <Button
-        w="100%"
-        colorScheme={"teal"}
-        variant="outline"
-        onClick={handleAddToCart}>
-        Add to Cart
-      </Button>
-      <Button w="100%" colorScheme={"teal"} onClick={handleBuyNow}>
-        Buy now
-      </Button>
+      {user && !isAddToCartVisible ? (
+        <>
+          <Heading fontSize={"3xl"}>Already in cart</Heading>
+          <Button
+            w="100%"
+            variant={"outline"}
+            colorScheme="teal"
+            _hover={{ bgColor: "teal.600", color: "white" }}
+            onClick={() => {router.push("/cart")}}
+            >
+            In Cart
+          </Button>
+        </>
+      ) : (
+        <>
+          <HStack>
+            <Icon as={TiStarFullOutline} color="orange.400" boxSize={8} />
+            <Text fontSize={"lg"}>{rating}/5</Text>
+          </HStack>
+          <Heading fontSize={["4xl", "4xl"]}>{price}</Heading>
+          <Button
+            w="100%"
+            colorScheme={"teal"}
+            variant="outline"
+            onClick={handleAddToCart}>
+            Add to Cart
+          </Button>
+          <Button w="100%" colorScheme={"teal"} onClick={handleBuyNow}>
+            Buy now
+          </Button>
+        </>
+      )}
     </VStack>
   );
 };

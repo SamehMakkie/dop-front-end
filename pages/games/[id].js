@@ -195,6 +195,7 @@ const GamePage = () => {
           </VStack>
           <GameActionCard
             isPurchased={data?.download_visible}
+            isAddToCartVisible={data?.add_to_cart_visible}
             price={"$" + data?.game_price}
             rating={data?.game_rating}
             id={gameId}
