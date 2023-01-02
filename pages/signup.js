@@ -83,6 +83,7 @@ const Signup = () => {
         description: "The Username is already in use, try another username",
         status: "error",
         position: "top-right",
+        isClosable: true
       });
     }
 
@@ -94,14 +95,16 @@ const Signup = () => {
         description: "The Email is already in use",
         status: "error",
         position: "top-right",
+        isClosable: true
       });
     }
 
     if (usernameRes.code >= 0 && emailRes.code >= 0) {
+      // password or birth_date
       const birthDate = "1990-01-01";
       const user = {
         email,
-        user_name: username,
+        username: username,
         password,
         birthDate: birthDate,
       };
@@ -117,7 +120,7 @@ const Signup = () => {
         );
         router.push("/");
       } else {
-        toast({ title: "Error", description: createdUser.msg });
+        toast({ title: "Error", description: createdUser.msg, status: "error", position: "top-right", isClosable: true });
       }
     }
   };

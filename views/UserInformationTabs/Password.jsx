@@ -46,6 +46,7 @@ export default function Password() {
             "Your password has been successfully changed, redirecting to home page...",
           status: "success",
           position: "top-right",
+          isClosable: true
         });
 
         router.push("/");
@@ -55,6 +56,7 @@ export default function Password() {
           description: msg,
           status: "error",
           position: "top-right",
+          isClosable: true
         });
         setFormData({
           oldPass: "",
