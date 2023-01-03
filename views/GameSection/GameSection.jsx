@@ -8,17 +8,24 @@ import LoadingGameCard from "../../components/Cards/LoadingGameCard";
 const GamesSection = ({ i, sectionTitle, fetchFunction }) => {
   const [games, setGames] = useState();
   const [loading, setLoading] = useState(true);
+  const sliderRef = useRef(null);
   const ref = useRef(null);
   useScroll({ container: ref });
 
   const slideLeft = () => {
-    var slider = document.getElementById("slider-" + i);
-    slider.scrollLeft = slider.scrollLeft - 500;
+    if (sliderRef.current) {
+      sliderRef.current.scrollLeft = sliderRef.current.scrollLeft - 500;
+    }
+    // var slider = document.getElementById("slider-" + i);
+    // slider.scrollLeft = slider.scrollLeft - 500;
   };
 
   const slideRight = () => {
-    var slider = document.getElementById("slider-" + i);
-    slider.scrollLeft = slider.scrollLeft + 500;
+    if (sliderRef.current) {
+      sliderRef.current.scrollLeft = sliderRef.current.scrollLeft + 500;
+    }
+    // var slider = document.getElementById("slider-" + i);
+    // slider.scrollLeft = slider.scrollLeft + 500;
   };
 
   useEffect(() => {
@@ -52,6 +59,7 @@ const GamesSection = ({ i, sectionTitle, fetchFunction }) => {
         <Box
           w="100%"
           h="100%"
+          ref={sliderRef}
           overflowX={"scroll"}
           overflowY="hidden"
           scrollBehavior={"smooth"}
