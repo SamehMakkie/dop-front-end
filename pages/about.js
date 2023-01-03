@@ -40,6 +40,13 @@ const About = () => {
             slang and insults in multiple languages, making DoP Game Store safe
             for everyone.
           </AboutTextSection>
+          <AboutTextSection title={"How should you find games?"}>
+            You can search for games by typing their name on the search bar or
+            using the category buttons on our home page. On the search page, you
+            can either use the filters to search for games based on their price,
+            category and age restriction, or you can use the search bar again to
+            search for games with their names.
+          </AboutTextSection>
         </VStack>
       </PageStackSpacing>
     </NavigationWrapper>
