@@ -262,7 +262,7 @@ export default function Profile() {
               type="submit"
               colorScheme={"teal"}
               isDisabled={isUpdateDisabled}>
-              Submit
+              Save
             </Button>
           </Stack>
         </Stack>
