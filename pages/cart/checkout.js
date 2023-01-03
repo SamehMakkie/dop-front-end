@@ -36,9 +36,10 @@ const months = [
 // Define an array of years
 const currentYear = new Date().getFullYear();
 const years = Array.from(
-  { length: currentYear - 1900 + 1 },
-  (_, i) => i + 1900
+  { length: 10 },
+  (_, i) => i + currentYear
 );
+
 
 const Checkout = () => {
   const user = useSelector((state) => state.userReducer.value);
