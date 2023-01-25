@@ -53,12 +53,12 @@ const NavBar = () => {
               <Show above="lg">
                 <HStack spacing={3}>
                   <Link href="/">
-                    <Button borderRadius={"2xl"} variant="ghost">
+                    <Button borderRadius={"2xl"} variant="ghost" fontSize={"lg"}>
                       Home
                     </Button>
                   </Link>
                   <Link href="/about">
-                    <Button borderRadius={"2xl"} variant="ghost">
+                    <Button borderRadius={"2xl"} variant="ghost" fontSize={"lg"}>
                       About
                     </Button>
                   </Link>

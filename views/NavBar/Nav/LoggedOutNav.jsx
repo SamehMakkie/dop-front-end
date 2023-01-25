@@ -25,12 +25,12 @@ const LoggedOutNav = () => {
         />
       </Show>
       <Link href={"/signin"}>
-        <Button borderRadius={"2xl"} variant="ghost">
+        <Button borderRadius={"2xl"} variant="ghost" fontSize={"lg"}>
           Sign In
         </Button>
       </Link>
       <Link href={"/signup"}>
-        <Button borderRadius={"2xl"} colorScheme="teal">
+        <Button borderRadius={"2xl"} colorScheme="teal" fontSize={"lg"}>
           Register
         </Button>
       </Link>

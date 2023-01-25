@@ -66,7 +66,7 @@ const LoggedInNav = ({ user }) => {
       </Show>
       <Show above="md">
         <Link href={"/library"}>
-          <Button leftIcon={<Icon as={BsGrid} boxSize="20px" />}>
+          <Button leftIcon={<Icon as={BsGrid} boxSize="20px" fontSize={"lg"} />}>
             Library
           </Button>
         </Link>
