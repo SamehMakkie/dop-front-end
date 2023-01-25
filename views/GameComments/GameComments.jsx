@@ -1,4 +1,12 @@
-import { Divider, Heading, Text, VStack } from "@chakra-ui/react";
+import {
+  Alert,
+  AlertIcon,
+  Divider,
+  Heading,
+  HStack,
+  Text,
+  VStack,
+} from "@chakra-ui/react";
 import Comment from "../../components/Comments/Comment";
 import CommentEditor from "../../components/Comments/CommentEditor";
 
@@ -28,11 +36,19 @@ const GameComments = ({ gameId, comments, isPurchased, setRefresh }) => {
     <VStack w="100%" px={[8, 0]} spacing={6} alignItems="start">
       <Heading w="100%">Comments</Heading>
       <Divider />
-      {isPurchased && <CommentEditor gameId={gameId} setRefresh={setRefresh} />}
+      {isPurchased ? (
+        <CommentEditor gameId={gameId} setRefresh={setRefresh} />
+      ) : (
+        <Alert status="info">
+          <AlertIcon />
+          You can{"'"}t comment before buying the game
+        </Alert>
+      )}
       {!comments || (Array.isArray(comments) && comments.length === 0) ? (
-        <Text fontSize={"lg"} lineHeight="250%">
-          No comments has been posted
-        </Text>
+        <Alert status="info">
+          <AlertIcon />
+          No comments has been posted yet
+        </Alert>
       ) : (
         comments.map((comment) => (
           <Comment
