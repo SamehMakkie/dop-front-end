@@ -115,8 +115,9 @@ const Signin = () => {
               w="100%"
               type={"email"}
               name="email"
-              onChange={handleInputsChange}
               value={formData.email}
+              onChange={handleInputsChange}
+              onKeyDown={handleEnter}
               placeholder="john-doe@example.com"
             />
             <FormHelperText>We will never share your email</FormHelperText>
