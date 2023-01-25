@@ -69,6 +69,7 @@ const Signin = () => {
       handleSignIn();
     }
   };
+  
   const handleInputsChange = (e) => {
     setIsBtnPressed(false);
     setFormData((prev) => ({

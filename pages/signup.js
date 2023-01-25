@@ -78,7 +78,7 @@ const Signup = () => {
   const isSignUpDisabled =
     !data.username || !data.email || !data.password || !data.confirmPass;
 
-  const handleSignUp = async (data) => {
+  const handleSignUp = async () => {
     const { username, email, password } = data;
     const usernameRes = await checkUsername(username);
 
@@ -136,6 +136,12 @@ const Signup = () => {
     }
   };
 
+  const handleEnter = (e) => {
+    if (e.key == "Enter") {
+      handleSubmit(handleSignUp)
+    }
+  };
+
   useEffect(() => {
     if (user) {
       router.push("/");
@@ -177,6 +183,7 @@ const Signup = () => {
               <Input
                 w="100%"
                 type="text"
+                onKeyDown={handleEnter}
                 placeholder="yourusername"
                 {...register("username")}
               />
@@ -189,6 +196,7 @@ const Signup = () => {
               <Input
                 w="100%"
                 type="email"
+                onKeyDown={handleEnter}
                 placeholder="john-doe@example.com"
                 {...register("email")}
               />
@@ -206,6 +214,7 @@ const Signup = () => {
               <InputGroup w="100%">
                 <Input
                   w="100%"
+                  onKeyDown={handleEnter}
                   type={isPasswordShown ? "text" : "password"}
                   placeholder="**************"
                   {...register("password")}
@@ -233,6 +242,7 @@ const Signup = () => {
               <InputGroup w="100%">
                 <Input
                   w="100%"
+                  onKeyDown={handleEnter}
                   type={isPasswordShown ? "text" : "password"}
                   placeholder="**************"
                   {...register("confirmPass")}
