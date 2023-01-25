@@ -122,8 +122,8 @@ export default function ContactUs() {
                     </HStack>
                     <HStack>
                       <MdEmail size="20px" />
-                      <a href={`mailto:john-doe@mail.com`}>
-                        <Text>john-doe@mail.com</Text>
+                      <a href={`mailto:dop.info.user@gmail.com`}>
+                        <Text>dop.info.user@gmail.com</Text>
                       </a>
                     </HStack>
                     <HStack>
