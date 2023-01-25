@@ -1,4 +1,4 @@
-import { Divider, HStack, Icon, Image, Text, VStack } from "@chakra-ui/react";
+import { Button, Divider, HStack, Icon, Image, Text, VStack } from "@chakra-ui/react";
 import { BsTwitter, BsInstagram, BsYoutube } from "react-icons/bs";
 import Link from "next/link";
 
@@ -12,6 +12,11 @@ const Footer = () => {
           src="/DoPa128.png"
           alt="DoP logo"
         />
+      </Link>
+      <Link href={"/contact"}>
+        <Button>
+        Contact Us
+        </Button>
       </Link>
       <HStack spacing={5}>
         <Link href={""}>
