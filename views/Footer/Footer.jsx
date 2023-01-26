@@ -14,7 +14,7 @@ const Footer = () => {
         />
       </Link>
       <Link href={"/contact"}>
-        <Button>
+        <Button fontSize={"lg"}>
         Contact Us
         </Button>
       </Link>
