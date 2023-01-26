@@ -47,6 +47,12 @@ const About = () => {
             category and age restriction, or you can use the search bar again to
             search for games with their names.
           </AboutTextSection>
+          <AboutTextSection
+            title={"Can I buy multiple copies of a single game?"}>
+            You can buy a game once, and download it as much as you want, to any
+            device, on any platform! There is no point in buying a game twice.
+            So it is not allowed to do it.
+          </AboutTextSection>
         </VStack>
       </PageStackSpacing>
     </NavigationWrapper>
